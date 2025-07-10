@@ -50,16 +50,15 @@ namespace Helpdesk.Repositories
 
 		public async Task<TEntity> Update(TEntity entity)
 		{
-			var existingEntity = await FindById((uint)GetPrimaryKey(entity));
+			var existingEntity = await FindById((uint)GetPrimaryKeyValue(entity));
 
 			if (existingEntity == null)
 			{
-				throw new InvalidOperationException("Entita nenalezena.");
+				throw new InvalidOperationException("Entity not found.");
 			}
 
 			helpdeskDbContext.Entry(existingEntity).CurrentValues.SetValues(entity);
 			await helpdeskDbContext.SaveChangesAsync();
-			//return entityEntry.Entity;
 			return existingEntity;
 		}
 
@@ -85,7 +84,7 @@ namespace Helpdesk.Repositories
 			return false;
 		}
 
-		private object GetPrimaryKey(TEntity entity)
+		private object GetPrimaryKeyValue(TEntity entity)
 		{
 			try
 			{

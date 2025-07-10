@@ -1,4 +1,4 @@
-﻿using Helpdesk.Models;
+﻿using Helpdesk.DTOs;
 
 namespace Helpdesk.Interfaces
 {

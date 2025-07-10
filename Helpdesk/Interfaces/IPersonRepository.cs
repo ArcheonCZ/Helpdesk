@@ -2,7 +2,7 @@
 
 namespace Helpdesk.Interfaces
 {
-	public interface IPersonRepository:IBaseRepository<PersonDTO>
+	public interface IPersonRepository:IBaseRepository<Person>
 	{
 	}
 }
