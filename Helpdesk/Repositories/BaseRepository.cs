@@ -12,14 +12,14 @@ namespace Helpdesk.Repositories
 
 	public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
 	{
-		protected readonly HelpdeskDbContext invoicesDbContext;
+		protected readonly HelpdeskDbContext helpdeskDbContext;
 		protected readonly DbSet<TEntity> dbSet;
 
 
-		public BaseRepository(HelpdeskDbContext invoicesDbContext)
+		public BaseRepository(HelpdeskDbContext helpdeskDbContext)
 		{
-			this.invoicesDbContext = invoicesDbContext;
-			dbSet = invoicesDbContext.Set<TEntity>();
+			this.helpdeskDbContext = helpdeskDbContext;
+			dbSet = helpdeskDbContext.Set<TEntity>();
 		}
 
 
@@ -28,38 +28,37 @@ namespace Helpdesk.Repositories
 			return await dbSet.FindAsync(id);
 		}
 
-		public bool ExistsWithId(uint id)
+		public async Task<bool> ExistsWithId(uint id)
 		{
-			TEntity? entity = dbSet.Find(id);
+			TEntity? entity = await FindById(id);
 			if (entity is not null)
-				invoicesDbContext.Entry(entity).State = EntityState.Detached;
+				helpdeskDbContext.Entry(entity).State = EntityState.Detached;
 			return entity is not null;
 		}
 
-		public IList<TEntity> GetAll()
+		public async Task<IList<TEntity>> GetAll()
 		{
-			return dbSet.ToList();
+			return await dbSet.ToListAsync();
 		}
 
-		public TEntity Insert(TEntity entity)
+		public async Task<TEntity> Insert(TEntity entity)
 		{
-			EntityEntry<TEntity> entityEntry = dbSet.Add(entity);
-			invoicesDbContext.SaveChanges();
+			EntityEntry<TEntity> entityEntry = await dbSet.AddAsync(entity);
+			await helpdeskDbContext.SaveChangesAsync();
 			return entityEntry.Entity;
 		}
 
-		public TEntity Update(TEntity entity)
+		public async Task<TEntity> Update(TEntity entity)
 		{
-			var existingEntity = FindById((uint)GetPrimaryKey(entity));
+			var existingEntity = await FindById((uint)GetPrimaryKey(entity));
 
 			if (existingEntity == null)
 			{
-				throw new InvalidOperationException("Entity not found.");
+				throw new InvalidOperationException("Entita nenalezena.");
 			}
 
-			//EntityEntry<TEntity> entityEntry = dbSet.Update(entity);
-			invoicesDbContext.Entry(existingEntity).CurrentValues.SetValues(entity);
-			invoicesDbContext.SaveChanges();
+			helpdeskDbContext.Entry(existingEntity).CurrentValues.SetValues(entity);
+			await helpdeskDbContext.SaveChangesAsync();
 			//return entityEntry.Entity;
 			return existingEntity;
 		}
@@ -74,11 +73,11 @@ namespace Helpdesk.Repositories
 			try
 			{
 				dbSet.Remove(entity);
-				invoicesDbContext.SaveChanges();
+				helpdeskDbContext.SaveChanges();
 			}
 			catch
 			{
-				invoicesDbContext.Entry(entity).State = EntityState.Unchanged;
+				helpdeskDbContext.Entry(entity).State = EntityState.Unchanged;
 				throw;
 			}
 		}
