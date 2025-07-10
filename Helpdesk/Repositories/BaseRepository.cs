@@ -63,31 +63,45 @@ namespace Helpdesk.Repositories
 			return existingEntity;
 		}
 
-		public void Delete(uint id)
+		public async Task<bool> Delete(uint id)
 		{
-			TEntity? entity = dbSet.Find(id);
+			TEntity? entity = await FindById(id);
 
-			if (entity is null)
-				return;
-
-			try
+			if (entity is not null)
 			{
-				dbSet.Remove(entity);
-				helpdeskDbContext.SaveChanges();
+				try
+				{
+					dbSet.Remove(entity);
+					await helpdeskDbContext.SaveChangesAsync();
+					return true;
+				}
+				catch (Exception ex)
+				{
+					helpdeskDbContext.Entry(entity).State = EntityState.Unchanged;
+					Console.WriteLine(ex.Message);
+					throw;
+				}
 			}
-			catch
-			{
-				helpdeskDbContext.Entry(entity).State = EntityState.Unchanged;
-				throw;
-			}
+			return false;
 		}
 
 		private object GetPrimaryKey(TEntity entity)
 		{
-			var keyName = invoicesDbContext.Model.FindEntityType(typeof(TEntity)).FindPrimaryKey().Properties
-				.Select(x => x.Name).Single();
+			try
+			{
+				var keyName = helpdeskDbContext.Model
+					.FindEntityType(typeof(TEntity))!
+					.FindPrimaryKey()!.Properties
+					.Select(x => x.Name).Single();
 
-			return entity.GetType().GetProperty(keyName).GetValue(entity, null);
+				return entity.GetType()
+					.GetProperty(keyName)!
+					.GetValue(entity, null)!;
+			}
+			catch (Exception ex)
+			{
+				throw new InvalidOperationException(ex.Message);
+			}
 		}
 	}
 }

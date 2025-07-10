@@ -3,15 +3,10 @@
 
 public interface IBaseRepository<TEntity> where TEntity : class
 {
-	IList<TEntity> GetAll();
-
-	TEntity? FindById(uint? id);
-
-	TEntity Insert(TEntity entity);
-
-	TEntity Update(TEntity entity);
-
-	void Delete(uint id);
-
-	bool ExistsWithId(uint id);
+	Task<TEntity?> FindById(uint id);
+	Task<bool> ExistsWithId(uint id);
+	Task<IList<TEntity>> GetAll();
+	Task<TEntity> Insert(TEntity entity);
+	Task<TEntity> Update(TEntity entity);
+	Task<bool> Delete(uint id);
 }

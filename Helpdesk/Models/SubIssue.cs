@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Helpdesk.Models
 {
-	public class PodUkol : BaseUkol
+	public class SubIssue : BaseIssue
 	{
 		[Required]
-		public uint UkolId { get; set; }
-		[ForeignKey("UkolId")]
-		public virtual Ukol Ukol { get; set; }
+		public uint IssueId { get; set; }
+		[ForeignKey("IssueId")]
+		public virtual IssueDTO Issue { get; set; }
 
 
 	}
