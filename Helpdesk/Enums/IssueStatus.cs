@@ -8,4 +8,5 @@
 		Resolved = 3,
 		Rejected = 4
 	}
+
 }

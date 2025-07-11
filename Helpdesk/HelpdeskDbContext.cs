@@ -5,8 +5,8 @@ namespace Helpdesk
 {
 	public class HelpdeskDbContext : DbContext
 	{
-		public DbSet<PersonDTO>? Osoby { get; set; }
-		public DbSet<issue>? Ukoly { get; set; }
+		public DbSet<Person>? Osoby { get; set; }
+		public DbSet<Issue>? Ukoly { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{

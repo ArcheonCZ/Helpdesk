@@ -12,39 +12,38 @@ namespace Helpdesk.Repositories
 
 	public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
 	{
-		protected readonly HelpdeskDbContext helpdeskDbContext;
-		protected readonly DbSet<TEntity> dbSet;
+		protected readonly HelpdeskDbContext _helpdeskDbContext;
+		protected readonly DbSet<TEntity> _dbSet;
 
 
 		public BaseRepository(HelpdeskDbContext helpdeskDbContext)
 		{
-			this.helpdeskDbContext = helpdeskDbContext;
-			dbSet = helpdeskDbContext.Set<TEntity>();
+			this._helpdeskDbContext = helpdeskDbContext;
+			_dbSet = helpdeskDbContext.Set<TEntity>();
 		}
 
+		public async Task<IList<TEntity>> GetAll()
+		{
+			return await _dbSet.ToListAsync();
+		}
 
 		public async Task<TEntity?> FindById(uint id)
 		{
-			return await dbSet.FindAsync(id);
+			return await _dbSet.FindAsync(id);
 		}
 
 		public async Task<bool> ExistsWithId(uint id)
 		{
 			TEntity? entity = await FindById(id);
 			if (entity is not null)
-				helpdeskDbContext.Entry(entity).State = EntityState.Detached;
+				_helpdeskDbContext.Entry(entity).State = EntityState.Detached;
 			return entity is not null;
-		}
-
-		public async Task<IList<TEntity>> GetAll()
-		{
-			return await dbSet.ToListAsync();
 		}
 
 		public async Task<TEntity> Insert(TEntity entity)
 		{
-			EntityEntry<TEntity> entityEntry = await dbSet.AddAsync(entity);
-			await helpdeskDbContext.SaveChangesAsync();
+			EntityEntry<TEntity> entityEntry = await _dbSet.AddAsync(entity);
+			await _helpdeskDbContext.SaveChangesAsync();
 			return entityEntry.Entity;
 		}
 
@@ -57,8 +56,8 @@ namespace Helpdesk.Repositories
 				throw new InvalidOperationException("Entity not found.");
 			}
 
-			helpdeskDbContext.Entry(existingEntity).CurrentValues.SetValues(entity);
-			await helpdeskDbContext.SaveChangesAsync();
+			_helpdeskDbContext.Entry(existingEntity).CurrentValues.SetValues(entity);
+			await _helpdeskDbContext.SaveChangesAsync();
 			return existingEntity;
 		}
 
@@ -70,13 +69,13 @@ namespace Helpdesk.Repositories
 			{
 				try
 				{
-					dbSet.Remove(entity);
-					await helpdeskDbContext.SaveChangesAsync();
+					_dbSet.Remove(entity);
+					await _helpdeskDbContext.SaveChangesAsync();
 					return true;
 				}
 				catch (Exception ex)
 				{
-					helpdeskDbContext.Entry(entity).State = EntityState.Unchanged;
+					_helpdeskDbContext.Entry(entity).State = EntityState.Unchanged;
 					Console.WriteLine(ex.Message);
 					throw;
 				}
@@ -88,7 +87,7 @@ namespace Helpdesk.Repositories
 		{
 			try
 			{
-				var keyName = helpdeskDbContext.Model
+				var keyName = _helpdeskDbContext.Model
 					.FindEntityType(typeof(TEntity))!
 					.FindPrimaryKey()!.Properties
 					.Select(x => x.Name).Single();

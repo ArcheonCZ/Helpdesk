@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Helpdesk.DTOs;
 using Helpdesk.Interfaces;
+using Helpdesk.Models;
 
 namespace Helpdesk.Managers
 {
@@ -15,25 +16,34 @@ namespace Helpdesk.Managers
 			_mapper = mapper;
 		}
 
-		public Task<IList<IssueDTO>> GetAll()
+		public async Task<IList<IssueDTO>> GetAll()
 		{
-			return _issueRepository.GetAll();
+			return  _mapper.Map<IList<IssueDTO>>(await _issueRepository.GetAll());
 		}
-		public Task<IList<IssueDTO>> GetAllByPersonId(uint personId)
+		public async Task<IList<IssueDTO>> GetAllIssuesByRequester(uint personId)
 		{
-			throw new NotImplementedException();
+			IList<Issue> issuesFound = await _issueRepository.GetIssuesByRequester(personId);
+			return _mapper.Map<IList<IssueDTO>>(issuesFound);
 		}
-		public Task<IList<IssueDTO>> GetAllUnresolved()
+		public async Task<IList<IssueDTO>> GetAllIssuesByAssignee(uint personId)
 		{
-			throw new NotImplementedException();
+			IList<Issue> issuesFound = await _issueRepository.GetIssuesByAssignee(personId);
+			return _mapper.Map<IList<IssueDTO>>(issuesFound);
 		}
-		public Task<IList<IssueDTO>> GetAllOverdue()
+		public async Task<IList<IssueDTO>> GetAllUnresolved()
 		{
-			throw new NotImplementedException();
+			IList<Issue> issuesFound = await _issueRepository.GetUnresolvedIssues();
+			return _mapper.Map<IList<IssueDTO>>(issuesFound);
 		}
-		public Task<IList<IssueDTO>> GetAllWithOverdueSubIssue()
+		public async Task<IList<IssueDTO>> GetAllOverdue()
 		{
-			throw new NotImplementedException();
+			IList<Issue> issuesFound = await _issueRepository.GetUnresolvedOverdueIssues();
+			return _mapper.Map<IList<IssueDTO>>(issuesFound);
+		}
+		public async Task<IList<IssueDTO>> GetAllWithOverdueSubIssue()
+		{
+			IList<Issue> issuesFound = await _issueRepository.GetUnresolvedOverdueIssues(true);
+			return _mapper.Map<IList<IssueDTO>>(issuesFound);
 		}
 
 

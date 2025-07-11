@@ -5,14 +5,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Helpdesk.Models
 {
-	public class IssueDTO : BaseIssue
+	public class Issue : BaseIssue
 	{
 		[Required]
-		public string RequesterId { get; set; } = string.Empty;
+		public uint RequesterId { get; set; } = string.Empty;
 		[ForeignKey("RequesterId")]
 		public virtual Person Requester { get; set; } = null!;
 		[Required]
-		public string AssigneeId { get; set; } = string.Empty;
+		public uint AssigneeId { get; set; } = string.Empty;
 		[ForeignKey("AssigneeId")]
 		public virtual Person Assignee { get; set; } = null!;
 		[Required]
@@ -21,6 +21,6 @@ namespace Helpdesk.Models
 		public IssuePriority Priority { get; set; }
 		public List<ChatMessage> Chat { get; set; } = new List<ChatMessage>();
 		public List<Document> Documents { get; set; } = new List<Document>();
-		public List<BaseIssue> Subtasks { get; set; } = new List<BaseIssue>();
+		public List<BaseIssue> SubIssues { get; set; } = new List<BaseIssue>();
 	}
 }
