@@ -1,14 +1,17 @@
 ﻿using Helpdesk.DTOs;
+using Helpdesk.Models;
+using Helpdesk.Repositories;
 
 namespace Helpdesk.Interfaces
 {
 	public interface IIssueManager
 	{
-		public Task<IList<IssueDTO>> GetAll();
-		public Task<IList<IssueDTO>> GetAllByPersonId(uint personId);
-		public Task<IList<IssueDTO>> GetAllUnresolved();
-		public Task<IList<IssueDTO>> GetAllOverdue();
-		public Task<IList<IssueDTO>> GetAllWithOverdueSubIssue();
+		 Task<IList<IssueDTO>> GetAll();
+		Task<IList<IssueDTO>> GetAllIssuesByRequester(uint personId);
+		Task<IList<IssueDTO>> GetAllIssuesByAssignee(uint personId);
+		 Task<IList<IssueDTO>> GetAllUnresolved();
+		 Task<IList<IssueDTO>> GetAllOverdue();
+		 Task<IList<IssueDTO>> GetAllWithOverdueSubIssue();
 
 	}
 }

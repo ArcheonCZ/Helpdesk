@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Helpdesk.Models;
+using Helpdesk.DTOs;
 
 namespace Helpdesk
 {
@@ -7,8 +8,8 @@ namespace Helpdesk
 	{
 		public AutoMapperProfile() 
 		{
-			CreateMap<PersonDTO.PersonDTO>().Reverse();
-			CreateMap<IssueDTO.IssueDTO>().Reverse();
+			CreateMap<Person,PersonDTO>().ReverseMap();
+			CreateMap<Issue,IssueDTO>().ReverseMap();
 		}
 	}
 }

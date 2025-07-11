@@ -8,11 +8,11 @@ namespace Helpdesk.Models
 	public class Issue : BaseIssue
 	{
 		[Required]
-		public uint RequesterId { get; set; } = string.Empty;
+		public uint RequesterId { get; set; } 
 		[ForeignKey("RequesterId")]
 		public virtual Person Requester { get; set; } = null!;
 		[Required]
-		public uint AssigneeId { get; set; } = string.Empty;
+		public uint AssigneeId { get; set; } 
 		[ForeignKey("AssigneeId")]
 		public virtual Person Assignee { get; set; } = null!;
 		[Required]

@@ -11,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Razor komponenty (Blazor)
 builder.Services.AddRazorPages();      // pro .razor komponenty a layout
 builder.Services.AddServerSideBlazor(); // samotný Blazor Server
+builder.Services.AddRazorComponents()
+				.AddInteractiveServerComponents();
 //builder.Services.AddSignalR(); //->je nutné pøidávat? nemìlo by být
 
 // Registrace EF Core s SQL Serverem
@@ -40,8 +42,9 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-
+app.UseAntiforgery();
 // Napojení Blazoru
+app.MapBlazorHub();
 app.MapRazorComponents<App>()
 	.AddInteractiveServerRenderMode();
 

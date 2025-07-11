@@ -5,15 +5,25 @@ namespace Helpdesk
 {
 	public class HelpdeskDbContext : DbContext
 	{
-		public DbSet<Person>? Osoby { get; set; }
-		public DbSet<Issue>? Ukoly { get; set; }
+		public DbSet<Person>? Persons { get; set; }
+		public DbSet<Issue>? Issues { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
 
 
-			////model builder nastavení sloupců a vazeb
+			modelBuilder.Entity<Issue>()
+				.HasOne(b => b.Requester)
+				.WithMany()
+				.HasForeignKey(b => b.RequesterId)
+				.OnDelete(DeleteBehavior.Restrict); // nebo NoAction
+
+			modelBuilder.Entity<Issue>()
+				.HasOne(b => b.Assignee)
+				.WithMany()
+				.HasForeignKey(b => b.AssigneeId)
+				.OnDelete(DeleteBehavior.Restrict); // nebo NoAction
 		}
 
 		public HelpdeskDbContext(DbContextOptions<HelpdeskDbContext> options)

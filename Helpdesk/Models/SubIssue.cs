@@ -8,7 +8,7 @@ namespace Helpdesk.Models
 		[Required]
 		public uint IssueId { get; set; }
 		[ForeignKey("IssueId")]
-		public virtual IssueDTO Issue { get; set; }
+		public virtual Issue Issue { get; set; } = null!;
 
 
 	}
