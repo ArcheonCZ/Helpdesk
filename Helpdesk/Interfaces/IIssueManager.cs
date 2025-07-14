@@ -6,12 +6,13 @@ namespace Helpdesk.Interfaces
 {
 	public interface IIssueManager
 	{
-		 Task<IList<IssueDTO>> GetAll();
+		Task<IList<IssueDTO>> GetAll();
+		Task<IssueDTO> GetById(uint id);
 		Task<IList<IssueDTO>> GetAllIssuesByRequester(uint personId);
 		Task<IList<IssueDTO>> GetAllIssuesByAssignee(uint personId);
-		 Task<IList<IssueDTO>> GetAllUnresolved();
-		 Task<IList<IssueDTO>> GetAllOverdue();
-		 Task<IList<IssueDTO>> GetAllWithOverdueSubIssue();
+		Task<IList<IssueDTO>> GetAllUnresolved();
+		Task<IList<IssueDTO>> GetAllOverdue();
+		Task<IList<IssueDTO>> GetAllWithOverdueSubIssue();
 
 	}
 }

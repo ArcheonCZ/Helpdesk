@@ -22,44 +22,6 @@ namespace Helpdesk.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Helpdesk.Models.BaseIssue", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
-
-                    b.Property<DateOnly>("DueDate")
-                        .HasColumnType("date");
-
-                    b.Property<long?>("IssueId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IssueId");
-
-                    b.ToTable("BaseIssue");
-
-                    b.HasDiscriminator().HasValue("BaseIssue");
-
-                    b.UseTphMappingStrategy();
-                });
-
             modelBuilder.Entity("Helpdesk.Models.ChatMessage", b =>
                 {
                     b.Property<long>("Id")
@@ -115,6 +77,87 @@ namespace Helpdesk.Migrations
                     b.HasIndex("IssueId");
 
                     b.ToTable("Document");
+                });
+
+            modelBuilder.Entity("Helpdesk.Models.Issue", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("AssigneeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateOnly>("CreatedDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("DueDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
+
+                    b.Property<long>("RequesterId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssigneeId");
+
+                    b.HasIndex("RequesterId");
+
+                    b.ToTable("Issues");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            AssigneeId = 3L,
+                            CreatedDate = new DateOnly(2025, 7, 1),
+                            Description = "Uživatel hlásí, že se nemůže přihlásit do systému.",
+                            DueDate = new DateOnly(2025, 7, 7),
+                            Priority = 2,
+                            RequesterId = 2L,
+                            Status = 0,
+                            Title = "Problém s přihlášením"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            AssigneeId = 3L,
+                            CreatedDate = new DateOnly(2025, 7, 2),
+                            Description = "Firma nahlásila špatně spočítanou fakturu.",
+                            DueDate = new DateOnly(2025, 7, 20),
+                            Priority = 1,
+                            RequesterId = 1L,
+                            Status = 1,
+                            Title = "Chyba ve fakturaci"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            AssigneeId = 1L,
+                            CreatedDate = new DateOnly(2025, 7, 1),
+                            Description = "Zaměstnanec požaduje nové pracovní zařízení.",
+                            DueDate = new DateOnly(2025, 7, 20),
+                            Priority = 0,
+                            RequesterId = 3L,
+                            Status = 0,
+                            Title = "Požadavek na nové zařízení"
+                        });
                 });
 
             modelBuilder.Entity("Helpdesk.Models.Person", b =>
@@ -189,77 +232,6 @@ namespace Helpdesk.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Helpdesk.Models.Issue", b =>
-                {
-                    b.HasBaseType("Helpdesk.Models.BaseIssue");
-
-                    b.Property<long>("AssigneeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateOnly>("CreatedDate")
-                        .HasColumnType("date");
-
-                    b.Property<int>("Priority")
-                        .HasColumnType("int");
-
-                    b.Property<long>("RequesterId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasIndex("AssigneeId");
-
-                    b.HasIndex("RequesterId");
-
-                    b.HasDiscriminator().HasValue("Issue");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            Description = "Uživatel hlásí, že se nemůže přihlásit do systému.",
-                            DueDate = new DateOnly(2025, 7, 7),
-                            Title = "Problém s přihlášením",
-                            AssigneeId = 3L,
-                            CreatedDate = new DateOnly(2025, 7, 1),
-                            Priority = 2,
-                            RequesterId = 2L,
-                            Status = 0
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            Description = "Firma nahlásila špatně spočítanou fakturu.",
-                            DueDate = new DateOnly(2025, 7, 20),
-                            Title = "Chyba ve fakturaci",
-                            AssigneeId = 3L,
-                            CreatedDate = new DateOnly(2025, 7, 2),
-                            Priority = 1,
-                            RequesterId = 1L,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 3L,
-                            Description = "Zaměstnanec požaduje nové pracovní zařízení.",
-                            DueDate = new DateOnly(2025, 7, 20),
-                            Title = "Požadavek na nové zařízení",
-                            AssigneeId = 1L,
-                            CreatedDate = new DateOnly(2025, 7, 1),
-                            Priority = 0,
-                            RequesterId = 3L,
-                            Status = 0
-                        });
-                });
-
-            modelBuilder.Entity("Helpdesk.Models.BaseIssue", b =>
-                {
-                    b.HasOne("Helpdesk.Models.Issue", null)
-                        .WithMany("SubIssues")
-                        .HasForeignKey("IssueId");
-                });
-
             modelBuilder.Entity("Helpdesk.Models.ChatMessage", b =>
                 {
                     b.HasOne("Helpdesk.Models.Issue", null)
@@ -306,8 +278,6 @@ namespace Helpdesk.Migrations
                     b.Navigation("Chat");
 
                     b.Navigation("Documents");
-
-                    b.Navigation("SubIssues");
                 });
 #pragma warning restore 612, 618
         }

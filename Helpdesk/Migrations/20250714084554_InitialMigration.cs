@@ -35,38 +35,31 @@ namespace Helpdesk.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BaseIssue",
+                name: "Issues",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    RequesterId = table.Column<long>(type: "bigint", nullable: false),
+                    AssigneeId = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    Priority = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DueDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
-                    IssueId = table.Column<long>(type: "bigint", nullable: true),
-                    RequesterId = table.Column<long>(type: "bigint", nullable: true),
-                    AssigneeId = table.Column<long>(type: "bigint", nullable: true),
-                    CreatedDate = table.Column<DateOnly>(type: "date", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: true),
-                    Priority = table.Column<int>(type: "int", nullable: true)
+                    DueDate = table.Column<DateOnly>(type: "date", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BaseIssue", x => x.Id);
+                    table.PrimaryKey("PK_Issues", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BaseIssue_BaseIssue_IssueId",
-                        column: x => x.IssueId,
-                        principalTable: "BaseIssue",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_BaseIssue_Persons_AssigneeId",
+                        name: "FK_Issues_Persons_AssigneeId",
                         column: x => x.AssigneeId,
                         principalTable: "Persons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_BaseIssue_Persons_RequesterId",
+                        name: "FK_Issues_Persons_RequesterId",
                         column: x => x.RequesterId,
                         principalTable: "Persons",
                         principalColumn: "Id",
@@ -88,9 +81,9 @@ namespace Helpdesk.Migrations
                 {
                     table.PrimaryKey("PK_Document", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Document_BaseIssue_IssueId",
+                        name: "FK_Document_Issues_IssueId",
                         column: x => x.IssueId,
-                        principalTable: "BaseIssue",
+                        principalTable: "Issues",
                         principalColumn: "Id");
                 });
 
@@ -108,9 +101,9 @@ namespace Helpdesk.Migrations
                 {
                     table.PrimaryKey("PK_ChatMessage", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ChatMessage_BaseIssue_IssueId",
+                        name: "FK_ChatMessage_Issues_IssueId",
                         column: x => x.IssueId,
-                        principalTable: "BaseIssue",
+                        principalTable: "Issues",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_ChatMessage_Persons_SenderId",
@@ -131,29 +124,14 @@ namespace Helpdesk.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "BaseIssue",
-                columns: new[] { "Id", "AssigneeId", "CreatedDate", "Description", "Discriminator", "DueDate", "IssueId", "Priority", "RequesterId", "Status", "Title" },
+                table: "Issues",
+                columns: new[] { "Id", "AssigneeId", "CreatedDate", "Description", "DueDate", "Priority", "RequesterId", "Status", "Title" },
                 values: new object[,]
                 {
-                    { 1L, 3L, new DateOnly(2025, 7, 1), "Uživatel hlásí, že se nemůže přihlásit do systému.", "Issue", new DateOnly(2025, 7, 7), null, 2, 2L, 0, "Problém s přihlášením" },
-                    { 2L, 3L, new DateOnly(2025, 7, 2), "Firma nahlásila špatně spočítanou fakturu.", "Issue", new DateOnly(2025, 7, 20), null, 1, 1L, 1, "Chyba ve fakturaci" },
-                    { 3L, 1L, new DateOnly(2025, 7, 1), "Zaměstnanec požaduje nové pracovní zařízení.", "Issue", new DateOnly(2025, 7, 20), null, 0, 3L, 0, "Požadavek na nové zařízení" }
+                    { 1L, 3L, new DateOnly(2025, 7, 1), "Uživatel hlásí, že se nemůže přihlásit do systému.", new DateOnly(2025, 7, 7), 2, 2L, 0, "Problém s přihlášením" },
+                    { 2L, 3L, new DateOnly(2025, 7, 2), "Firma nahlásila špatně spočítanou fakturu.", new DateOnly(2025, 7, 20), 1, 1L, 1, "Chyba ve fakturaci" },
+                    { 3L, 1L, new DateOnly(2025, 7, 1), "Zaměstnanec požaduje nové pracovní zařízení.", new DateOnly(2025, 7, 20), 0, 3L, 0, "Požadavek na nové zařízení" }
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BaseIssue_AssigneeId",
-                table: "BaseIssue",
-                column: "AssigneeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BaseIssue_IssueId",
-                table: "BaseIssue",
-                column: "IssueId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BaseIssue_RequesterId",
-                table: "BaseIssue",
-                column: "RequesterId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Document_IssueId",
@@ -169,6 +147,16 @@ namespace Helpdesk.Migrations
                 name: "IX_ChatMessage_SenderId",
                 table: "ChatMessage",
                 column: "SenderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Issues_AssigneeId",
+                table: "Issues",
+                column: "AssigneeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Issues_RequesterId",
+                table: "Issues",
+                column: "RequesterId");
         }
 
         /// <inheritdoc />
@@ -181,7 +169,7 @@ namespace Helpdesk.Migrations
                 name: "ChatMessage");
 
             migrationBuilder.DropTable(
-                name: "BaseIssue");
+                name: "Issues");
 
             migrationBuilder.DropTable(
                 name: "Persons");

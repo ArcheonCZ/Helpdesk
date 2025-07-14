@@ -1,0 +1,79 @@
+﻿@page "/issues/{id:int}"
+
+@inject IIssueManager IssueManager
+
+<PageTitle>Issue</PageTitle>
+
+<h1>Issue no. @Id</h1>
+
+@if (issue == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row"> 
+        <div class="col-6">
+            <div class="row mb-2">
+                <div class="col-3"><b>Title:</b></div>
+                <div class="col-9">@issue.Title</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-3"><b>Description:</b></div>
+                <div class="col-9">@issue.Description</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-3"><b>CreatedDate:</b></div>
+                <div class="col-9">@issue.CreatedDate</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-3"><b>DueDate:</b></div>
+                <div class="col-9">@issue.DueDate</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-3"><b>Priority:</b></div>
+                <div class="col-9">@issue.Priority</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-3"><b>Assignee:</b></div>
+                <div class="col-9">
+                    @(issue.Assignee.PersonType == PersonType.PhysicalPerson
+                                    ? $"{issue.Assignee.FirstName} {issue.Assignee.LastName}"
+                                    : issue.Assignee.CompanyName)
+                </div>
+             </div>
+             <div class="row mb-2">
+                 <div class="col-3"><b>Requester:</b></div>
+                 <div class="col-9">
+                    @(issue.Requester.PersonType == PersonType.PhysicalPerson
+                                    ? $"{issue.Requester.FirstName} {issue.Requester.LastName}"
+                                    : issue.Requester.CompanyName)
+                </div>
+             </div>
+            <div class="row mb-2">
+                <div class="col-3"><b>Status:</b></div>
+                <div class="col-9">@issue.Status</div>
+            </div>
+          
+        </div>
+   
+        <div class="col-6">
+            <p>Chat v pravém sloupci... </p>
+            <p>:) :) :)</p>
+        </div>
+    </div>
+<NavLink href="/issues" class="btn btn-secondary mt-3">Back</NavLink>
+}
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+    private IssueDTO? issue;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        issue = await IssueManager.GetById((uint)Id);
+    }
+}

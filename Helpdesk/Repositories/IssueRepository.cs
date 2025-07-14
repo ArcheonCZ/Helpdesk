@@ -16,6 +16,21 @@ namespace Helpdesk.Repositories
 		{
 		}
 
+
+		public new async Task<IList<Issue>> GetAll()
+		{
+			return await _helpdeskDbContext.Issues!
+				.Include(i => i.Requester)
+				.Include(i => i.Assignee)
+				.ToListAsync();
+		}
+		public new async Task<Issue?> FindById(uint id)
+		{
+			return await _helpdeskDbContext.Issues!
+				.Include(i => i.Requester)
+				.Include(i => i.Assignee)
+				.FirstOrDefaultAsync(i => i.Id == id); 
+		}
 		public async Task<IList<Issue>> GetIssuesByRequester(uint id)
 		{
 			IList<Issue> issuesFound = await _dbSet.Where(i => i.RequesterId == id).ToListAsync();

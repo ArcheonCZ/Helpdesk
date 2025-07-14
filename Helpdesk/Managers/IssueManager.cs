@@ -20,6 +20,11 @@ namespace Helpdesk.Managers
 		{
 			return  _mapper.Map<IList<IssueDTO>>(await _issueRepository.GetAll());
 		}
+		public async Task<IssueDTO> GetById(uint id)
+		{
+			Issue? issueFound = await _issueRepository.FindById(id);
+			return _mapper.Map<IssueDTO> (issueFound);
+		}
 		public async Task<IList<IssueDTO>> GetAllIssuesByRequester(uint personId)
 		{
 			IList<Issue> issuesFound = await _issueRepository.GetIssuesByRequester(personId);

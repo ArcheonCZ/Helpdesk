@@ -8,6 +8,7 @@ namespace Helpdesk.Interfaces
 		Task<IList<Issue>> GetIssuesByAssignee(uint id);
 		Task<IList<Issue>> GetUnresolvedIssues();
 		Task<IList<Issue>> GetUnresolvedOverdueIssues(bool subIssues = false);
+		
 	}
 	
 }
