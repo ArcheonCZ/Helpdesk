@@ -21,6 +21,6 @@ namespace Helpdesk.Models
 		public IssuePriority Priority { get; set; }
 		public List<ChatMessage> Chat { get; set; } = new List<ChatMessage>();
 		public List<Document> Documents { get; set; } = new List<Document>();
-		public List<BaseIssue> SubIssues { get; set; } = new List<BaseIssue>();
+		public virtual List<SubIssue> SubIssues { get; set; } = new List<SubIssue>();
 	}
 }

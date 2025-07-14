@@ -4,3 +4,5 @@
    	3,5 h středa
    	3,5H ČTVRTEK
 	3,5h pátek
+	2h neděle
+	8h pondělí

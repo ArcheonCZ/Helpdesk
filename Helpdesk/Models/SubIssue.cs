@@ -9,7 +9,7 @@ namespace Helpdesk.Models
 		public uint IssueId { get; set; }
 		[ForeignKey("IssueId")]
 		public virtual Issue Issue { get; set; } = null!;
-
+		public bool IsDone { get; set; } = false;
 
 	}
 }

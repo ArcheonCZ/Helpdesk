@@ -6,8 +6,9 @@ namespace Helpdesk
 {
 	public class HelpdeskDbContext : DbContext
 	{
-		public DbSet<Person>? Persons { get; set; }
-		public DbSet<Issue>? Issues { get; set; }
+		public DbSet<Person> Persons { get; set; }
+		public DbSet<Issue> Issues { get; set; }
+		public DbSet<SubIssue> SubIssues { get; set; }
 
 		public HelpdeskDbContext(DbContextOptions<HelpdeskDbContext> options)
 		: base(options)
