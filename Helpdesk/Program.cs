@@ -5,12 +5,10 @@ using Helpdesk.Managers;
 using Helpdesk.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Razor komponenty (Blazor)
-builder.Services.AddRazorPages();      // pro .razor komponenty a layout
-builder.Services.AddServerSideBlazor(); // samotný Blazor Server
+
+// Razor komponenty (Blazor) 
 builder.Services.AddRazorComponents()
 				.AddInteractiveServerComponents();
 //builder.Services.AddSignalR(); //->je nutné pøidávat? nemìlo by být
@@ -34,9 +32,9 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+	app.UseExceptionHandler("/Error", createScopeForErrors: true);
+	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+	app.UseHsts();
 }
 
 app.UseHttpsRedirection();
@@ -44,7 +42,6 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAntiforgery();
 // Napojení Blazoru
-app.MapBlazorHub();
 app.MapRazorComponents<App>()
 	.AddInteractiveServerRenderMode();
 
