@@ -1,11 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Helpdesk.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace Helpdesk.DTOs
 {
 	public class PersonDTO
 	{
+		public uint Id { get; set; }
 		public string Email { get; set; } = string.Empty;
-		public string PersonType { get; set; } = "PP";
+		public PersonType PersonType { get; set; } 
 		public bool IsApplicationAdmin { get; set; } = false;
 
 		///////////////////////////////////////

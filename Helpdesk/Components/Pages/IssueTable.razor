@@ -1,0 +1,51 @@
+﻿
+
+   <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>CreatedDate</th>
+                <th>DueDate</th>
+                <th>Priority</th>
+                <th>Assignee</th>
+                <th>Requester</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var issue in Issues)
+            {
+               
+                <tr>
+                    <td>
+                        <NavLink class="nav-link p-0 d-block" href="@($"issues/{issue.Id}")">
+                            @issue.Title
+                         </NavLink>
+                    </td>
+                    <td>@issue.Description</td>
+                    <td>@issue.CreatedDate</td>
+                    <td>@issue.DueDate</td>
+                    <td>@issue.Priority</td>
+                    <td>
+                        @(issue.Assignee.PersonType == PersonType.PhysicalPerson
+                                        ? $"{issue.Assignee.FirstName} {issue.Assignee.LastName}"
+                                        : issue.Assignee.CompanyName)
+                    </td>
+                    <td>
+                        @(issue.Requester.PersonType == PersonType.PhysicalPerson
+                                        ? $"{issue.Requester.FirstName} {issue.Requester.LastName}"
+                                        : issue.Requester.CompanyName)
+                    </td>
+                    <td>@issue.Status</td>
+                </tr>
+                
+            }
+        </tbody>
+      
+    </table>
+
+@code {
+    [Parameter]
+    public IList<IssueDTO> Issues { get; set; } = new List<IssueDTO>();
+}

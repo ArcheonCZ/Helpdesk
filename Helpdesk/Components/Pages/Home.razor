@@ -1,7 +1,16 @@
-﻿@page "/"
+﻿@* @page "/"
+@inject NavigationManager Navigation
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Hello!</h1>
 
-Welcome to your new app.
+Welcome to helpdesk app.
+
+@code {
+    protected override void OnInitialized()
+    {
+        Navigation.NavigateTo("/issues"); // true = tvrdé přesměrování
+    }
+}
+ *@

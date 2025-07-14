@@ -33,18 +33,30 @@ namespace Helpdesk.Repositories
 		}
 		public async Task<IList<Issue>> GetIssuesByRequester(uint id)
 		{
-			IList<Issue> issuesFound = await _dbSet.Where(i => i.RequesterId == id).ToListAsync();
+			IList<Issue> issuesFound = await _helpdeskDbContext.Issues!
+				.Include(i => i.Requester)
+				.Include(i => i.Assignee)
+				.Where(i => i.RequesterId == id)
+				.ToListAsync();
 			return issuesFound;
 		}
 		public async Task<IList<Issue>> GetIssuesByAssignee(uint id)
 		{
-			IList<Issue> issuesFound = await _dbSet.Where(i => i.AssigneeId == id).ToListAsync();
+			IList<Issue> issuesFound = await _helpdeskDbContext.Issues!
+				.Include(i => i.Requester)
+				.Include(i => i.Assignee)
+				.Where(i => i.AssigneeId == id)
+				.ToListAsync();
 			return issuesFound;
 		}
 
 		public async Task<IList<Issue>> GetUnresolvedIssues()
 		{
-			IList<Issue> issuesFound = await _dbSet.Where(i => openStatuses.Contains(i.Status)).ToListAsync();
+			IList<Issue> issuesFound = await _helpdeskDbContext.Issues!
+				.Include(i => i.Requester)
+				.Include(i => i.Assignee)
+				.Where(i => openStatuses
+				.Contains(i.Status)).ToListAsync();
 			return issuesFound;
 		}
 		public async Task<IList<Issue>> GetUnresolvedOverdueIssues(bool subIssues=false)
@@ -52,9 +64,19 @@ namespace Helpdesk.Repositories
 			DateOnly today = DateOnly.FromDateTime(DateTime.Now);
 			IList<Issue> issuesFound;
 			if (!subIssues)
-				issuesFound = await _dbSet.Where(i => openStatuses.Contains(i.Status) && i.DueDate<today).ToListAsync();
+				issuesFound = await _helpdeskDbContext.Issues!
+				.Include(i => i.Requester)
+				.Include(i => i.Assignee)
+				.Where(i => openStatuses
+				.Contains(i.Status) && i.DueDate<today)
+				.ToListAsync();
 			else
-				issuesFound = await _dbSet.Where(i => openStatuses.Contains(i.Status) && i.SubIssues.Any(s => s.DueDate < today)).ToListAsync();
+				issuesFound = await _helpdeskDbContext.Issues!
+				.Include(i => i.Requester)
+				.Include(i => i.Assignee)
+				.Where(i => openStatuses
+				.Contains(i.Status) && i.SubIssues.Any(s => s.DueDate < today))
+				.ToListAsync();
 			return issuesFound;
 		}
 	}

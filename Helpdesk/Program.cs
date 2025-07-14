@@ -48,4 +48,5 @@ app.MapBlazorHub();
 app.MapRazorComponents<App>()
 	.AddInteractiveServerRenderMode();
 
+
 app.Run();
