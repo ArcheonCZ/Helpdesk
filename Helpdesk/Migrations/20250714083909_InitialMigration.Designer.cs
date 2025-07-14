@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Helpdesk.Migrations
 {
     [DbContext(typeof(HelpdeskDbContext))]
-    [Migration("20250711151348_InitialMigration")]
+    [Migration("20250714083909_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -153,13 +153,43 @@ namespace Helpdesk.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PersonType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PersonType")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("Persons");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CompanyName = "Testovací Firma s.r.o.",
+                            Email = "firma@example.com",
+                            IdentificationNumber = 12345678,
+                            IsApplicationAdmin = false,
+                            PersonType = 1
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            DateOfBirth = new DateOnly(1985, 5, 20),
+                            Email = "jan.novak@example.com",
+                            FirstName = "Jan",
+                            IsApplicationAdmin = true,
+                            LastName = "Novák",
+                            PersonType = 0
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            DateOfBirth = new DateOnly(1990, 8, 15),
+                            Email = "petr.svoboda@example.com",
+                            FirstName = "Petr",
+                            IsApplicationAdmin = false,
+                            LastName = "Svoboda",
+                            PersonType = 0
+                        });
                 });
 
             modelBuilder.Entity("Helpdesk.Models.Issue", b =>
@@ -186,6 +216,44 @@ namespace Helpdesk.Migrations
                     b.HasIndex("RequesterId");
 
                     b.HasDiscriminator().HasValue("Issue");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Description = "Uživatel hlásí, že se nemůže přihlásit do systému.",
+                            DueDate = new DateOnly(2025, 7, 7),
+                            Title = "Problém s přihlášením",
+                            AssigneeId = 3L,
+                            CreatedDate = new DateOnly(2025, 7, 1),
+                            Priority = 2,
+                            RequesterId = 2L,
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Description = "Firma nahlásila špatně spočítanou fakturu.",
+                            DueDate = new DateOnly(2025, 7, 20),
+                            Title = "Chyba ve fakturaci",
+                            AssigneeId = 3L,
+                            CreatedDate = new DateOnly(2025, 7, 2),
+                            Priority = 1,
+                            RequesterId = 1L,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Description = "Zaměstnanec požaduje nové pracovní zařízení.",
+                            DueDate = new DateOnly(2025, 7, 20),
+                            Title = "Požadavek na nové zařízení",
+                            AssigneeId = 1L,
+                            CreatedDate = new DateOnly(2025, 7, 1),
+                            Priority = 0,
+                            RequesterId = 3L,
+                            Status = 0
+                        });
                 });
 
             modelBuilder.Entity("Helpdesk.Models.BaseIssue", b =>

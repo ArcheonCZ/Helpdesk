@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Helpdesk.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace Helpdesk.Models
 {
@@ -9,7 +10,7 @@ namespace Helpdesk.Models
 		[Required]
 		public string Email { get; set; } = string.Empty;
 		[Required]
-		public string PersonType { get; set; } = "PP";
+		public PersonType PersonType { get; set; } = 0;
 
 		public bool IsApplicationAdmin { get; set; } = false;
 

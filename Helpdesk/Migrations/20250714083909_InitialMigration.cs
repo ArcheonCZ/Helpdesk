@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Helpdesk.Migrations
 {
     /// <inheritdoc />
@@ -18,7 +20,7 @@ namespace Helpdesk.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PersonType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PersonType = table.Column<int>(type: "int", nullable: false),
                     IsApplicationAdmin = table.Column<bool>(type: "bit", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -116,6 +118,26 @@ namespace Helpdesk.Migrations
                         principalTable: "Persons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Persons",
+                columns: new[] { "Id", "CompanyId", "CompanyName", "DateOfBirth", "Email", "FirstName", "IdentificationNumber", "IsApplicationAdmin", "LastName", "PersonType" },
+                values: new object[,]
+                {
+                    { 1L, null, "Testovací Firma s.r.o.", null, "firma@example.com", null, 12345678, false, null, 1 },
+                    { 2L, null, null, new DateOnly(1985, 5, 20), "jan.novak@example.com", "Jan", null, true, "Novák", 0 },
+                    { 3L, null, null, new DateOnly(1990, 8, 15), "petr.svoboda@example.com", "Petr", null, false, "Svoboda", 0 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "BaseIssue",
+                columns: new[] { "Id", "AssigneeId", "CreatedDate", "Description", "Discriminator", "DueDate", "IssueId", "Priority", "RequesterId", "Status", "Title" },
+                values: new object[,]
+                {
+                    { 1L, 3L, new DateOnly(2025, 7, 1), "Uživatel hlásí, že se nemůže přihlásit do systému.", "Issue", new DateOnly(2025, 7, 7), null, 2, 2L, 0, "Problém s přihlášením" },
+                    { 2L, 3L, new DateOnly(2025, 7, 2), "Firma nahlásila špatně spočítanou fakturu.", "Issue", new DateOnly(2025, 7, 20), null, 1, 1L, 1, "Chyba ve fakturaci" },
+                    { 3L, 1L, new DateOnly(2025, 7, 1), "Zaměstnanec požaduje nové pracovní zařízení.", "Issue", new DateOnly(2025, 7, 20), null, 0, 3L, 0, "Požadavek na nové zařízení" }
                 });
 
             migrationBuilder.CreateIndex(
