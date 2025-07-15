@@ -2,18 +2,21 @@
 using Helpdesk.DTOs;
 using Helpdesk.Interfaces;
 using Helpdesk.Models;
+using System.Collections.Generic;
 
 namespace Helpdesk.Managers
 {
 	public class IssueManager : IIssueManager
 	{
 		protected readonly IIssueRepository _issueRepository;
+		protected readonly ISubIssueRepository _subIssueRepository;
 		protected readonly IMapper _mapper;
 
-		public IssueManager(IIssueRepository issueRepository, IMapper mapper)
+		public IssueManager(IIssueRepository issueRepository, ISubIssueRepository subIssueRepository, IMapper mapper)
 		{
 			_issueRepository = issueRepository;
 			_mapper = mapper;
+			_subIssueRepository = subIssueRepository;
 		}
 
 		public async Task<IList<IssueDTO>> GetAll()
@@ -51,6 +54,21 @@ namespace Helpdesk.Managers
 			return _mapper.Map<IList<IssueDTO>>(issuesFound);
 		}
 
+		public async Task<IList<SubIssueDTO>>GetAllSubissues(uint issueId)
+		{
+			IList<SubIssue> subIssuesFound = await _subIssueRepository.GetAllSubIssues(issueId);
+			return _mapper.Map< IList<SubIssueDTO>>(subIssuesFound);
+		}
+		public async Task<SubIssueDTO> CreateSubIssue(SubIssueDTO subIssueDTO)
+		{
+			SubIssue subIssue = _mapper.Map<SubIssue>(subIssueDTO);
+			subIssue = await _subIssueRepository.Insert(subIssue);
+			return _mapper.Map<SubIssueDTO>(subIssue);
+		}
+		public async Task ToggleSubIssueDone(uint subIssueId)
+		{
+			await _subIssueRepository.ToggleSubIssueDone(subIssueId);
+		}
 
 	}
 }

@@ -13,6 +13,9 @@ namespace Helpdesk.Interfaces
 		Task<IList<IssueDTO>> GetAllUnresolved();
 		Task<IList<IssueDTO>> GetAllOverdue();
 		Task<IList<IssueDTO>> GetAllWithOverdueSubIssue();
+		Task<IList<SubIssueDTO>> GetAllSubissues(uint issueId);
+		Task<SubIssueDTO> CreateSubIssue(SubIssueDTO subIssueDTO);
+		Task ToggleSubIssueDone(uint subIssueId);
 
 	}
 }

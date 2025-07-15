@@ -10,6 +10,7 @@ namespace Helpdesk
 		{
 			CreateMap<Person,PersonDTO>().ReverseMap();
 			CreateMap<Issue,IssueDTO>().ReverseMap();
+			CreateMap<SubIssue,SubIssueDTO>().ReverseMap();
 		}
 	}
 }

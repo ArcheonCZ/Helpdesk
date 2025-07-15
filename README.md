@@ -1,5 +1,8 @@
 # Helpdesk
-- projekt je tvořen v .NET 8.0
+- projekt je vytvořen v .NET 8.0 (Blazor server)
+- migrace je (společně s testovacími daty) vytvořena, je nutné pouze provést v NuGET příkaz "update-database"
+- SubIssue má z časových důvodů implementované pouze CR, nikoliv UD
+
 - časová dotace: 
    	3,5 h středa
    	3,5H ČTVRTEK
