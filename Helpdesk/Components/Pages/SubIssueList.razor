@@ -1,4 +1,5 @@
 ﻿@inject IIssueManager IssueManager
+@rendermode InteractiveServer
 
 @if (subIssues.Count == 0)
 {
@@ -31,14 +32,16 @@ else
     <InputDate @bind-Value="newSubIssue.DueDate" />
     <br />
     <button type="submit">Přidat</button>
+    <p>Debug Title: @newSubIssue.Title</p>
+    <p>Debug DueDate: @newSubIssue.DueDate.ToString()</p>
 </EditForm>
+
 
 @code {
 
     [Parameter] public uint IssueId { get; set; }
-
     private IList<SubIssueDTO> subIssues = new List<SubIssueDTO>();
-    private SubIssueDTO newSubIssue = new();
+    private SubIssueDTO newSubIssue = new SubIssueDTO();
 
     protected override async Task OnInitializedAsync()
     {
@@ -53,10 +56,18 @@ else
 
     private async Task AddSubIssue()
     {
-        Console.WriteLine($"Title: {newSubIssue.Title}, DueDate: {newSubIssue.DueDate}");
-        await IssueManager.CreateSubIssue(newSubIssue);
-        Console.WriteLine("IssueId předávané SubIssue: "+IssueId);
-      //  newSubIssue = new SubIssueDTO { IssueId = IssueId }; // reset formuláře
-        await LoadSubIssues();
+        try
+        {
+            Console.WriteLine($"Title: {newSubIssue.Title}, DueDate: {newSubIssue.DueDate}");
+            await IssueManager.CreateSubIssue(newSubIssue);
+            Console.WriteLine("IssueId předávané SubIssue: " + IssueId);
+            //  newSubIssue = new SubIssueDTO { IssueId = IssueId }; // reset formuláře
+            await LoadSubIssues();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Chyba při přidání subissue: " + ex.Message);
+            // případně zobrazit UI chybovou hlášku
+        }
     }
 }
