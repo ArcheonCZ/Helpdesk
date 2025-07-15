@@ -13,6 +13,10 @@ namespace Helpdesk.Models
 		[ForeignKey("SenderId")]
 		public  Person Sender { get; set; } = null!;
 		[Required]
+		public uint IssueId { get; set; }
+		[ForeignKey("IssueId")]
+		public virtual Issue Issue { get; set; } = null!;
+		[Required]
 		public string Message { get; set; } = string.Empty;
 	}
 }

@@ -9,6 +9,7 @@ namespace Helpdesk
 		public DbSet<Person> Persons { get; set; }
 		public DbSet<Issue> Issues { get; set; }
 		public DbSet<SubIssue> SubIssues { get; set; }
+		public DbSet<ChatMessage> ChatMessages { get; set; }
 
 		public HelpdeskDbContext(DbContextOptions<HelpdeskDbContext> options)
 		: base(options)

@@ -5,18 +5,10 @@
 
 
 <h3>Issues by @personRole</h3>
-<p>Id: @SelectedPersonId</p>
-<select class="form-select w-25 mb-3" @onchange="OnPersonChanged">
-    <option value="">-- Vyber osobu --</option>
-    @foreach (var p in persons)
-    {
-        <option value="@p.Id">
-            @(p.PersonType == PersonType.PhysicalPerson
-                    ? $"{p.FirstName} {p.LastName}"
-                    : p.CompanyName)
-         </option>
-        }
-</select>
+
+<PersonSelect Persons="@persons" SelectedPersonId="@SelectedPersonId" SelectedPersonIdChanged="OnPersonSelected" />
+
+
 
 @if (issues.Any())
 {
@@ -39,11 +31,11 @@
 
     }
 
-    private async Task OnPersonChanged(ChangeEventArgs e)
+    private async Task OnPersonSelected(uint id) //(ChangeEventArgs e)
     {
         Console.WriteLine("zavolán ONPERSONCHANGED");
-        if (uint.TryParse(e.Value?.ToString(), out var id))
-        {
+        // if (uint.TryParse(e.Value?.ToString(), out var id))
+        // {
             Console.WriteLine($"Zvoleno ID: {id}");
             SelectedPersonId = id;
             issues = personRole switch
@@ -53,9 +45,9 @@
                 _ => []
             };
             
-        }
-        else
-            Console.WriteLine("Nepodařilo se naparsovat id na uint");
+        // }
+        // else
+        //     Console.WriteLine("Nepodařilo se naparsovat id na uint");
     }
 
 

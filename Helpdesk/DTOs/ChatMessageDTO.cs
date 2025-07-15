@@ -8,5 +8,7 @@ namespace Helpdesk.DTOs
 	{
 		public uint SenderId { get; set; }
 		public string Message { get; set; } = string.Empty;
+		public uint IssueId { get; set; }
+		public PersonDTO Sender { get; set; } = null!;
 	}
 }

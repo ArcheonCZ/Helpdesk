@@ -33,8 +33,8 @@ else
     <InputDate @bind-Value="newSubIssue.DueDate" />
     <br />
     <button type="submit">Přidat</button>
-    <p>Debug Title: @newSubIssue.Title</p>
-    <p>Debug DueDate: @newSubIssue.DueDate.ToString()</p>
+@*     <p>Debug Title: @newSubIssue.Title</p>
+    <p>Debug DueDate: @newSubIssue.DueDate.ToString()</p> *@
 </EditForm>
 
 
@@ -48,6 +48,7 @@ else
     {
         await LoadSubIssues();
         newSubIssue.IssueId = IssueId; // naplnit rovnou správné ID
+        newSubIssue.DueDate = DateOnly.FromDateTime(DateTime.Now);
     }
 
     private async Task LoadSubIssues()

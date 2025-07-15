@@ -1,0 +1,69 @@
+﻿@inject IChatManager ChatManager
+@rendermode InteractiveServer
+
+
+<h4>Chat</h4>
+
+@if (messages.Count == 0)
+{
+    <p>Žádné zprávy</p>
+}
+else
+{
+    <ul class="list-group">
+        @foreach (var msg in messages)
+        {
+            <li class="list-group-item">
+                <b>@(msg.Sender.CompanyName ?? msg.Sender.FirstName +" "+ msg.Sender.LastName):</b> @msg.Message
+            </li>
+        }
+    </ul>
+}
+<div class="my-3">
+<PersonSelect Persons="@Persons" SelectedPersonId="@SelectedPersonId" SelectedPersonIdChanged="OnPersonSelected" />
+</div>
+<textarea @bind="newMessage.Message" placeholder="Napiš zprávu..." rows="3" class="form-control"></textarea>
+<button class="btn btn-primary mt-2" @onclick="SendMessage">
+    Odeslat
+</button>
+
+@code {
+    [Parameter]
+    public IList<PersonDTO> Persons { get; set; } = new List<PersonDTO>();
+    [Parameter]
+    public int IssueId { get; set; }
+    private uint SelectedPersonId { get; set; }
+    private ChatMessageDTO newMessage = new();
+    // private string newMessage = string.Empty;
+
+    private IList<ChatMessageDTO> messages = new List<ChatMessageDTO>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.Write("PersonData při startu komponenty" + Persons.Count +  IssueId);
+        if (Persons.Count > 0 && IssueId > 0)
+        {
+       await LoadMessages();
+        }
+    }
+
+    private void OnPersonSelected(uint selectedId)
+    {
+        SelectedPersonId = selectedId;
+        Console.WriteLine("Do newMessage.SenderId zadávám SelectedPersonId, které je: " + SelectedPersonId);
+        Console.WriteLine("Do newMessage.SenderId dále zadávám IssueId, které je: " + IssueId);
+        newMessage.SenderId = selectedId;
+        newMessage.IssueId = (uint)IssueId;
+    }
+    private async Task SendMessage()
+    {
+        Console.WriteLine("Odesílám zprávu: " + newMessage.Message);
+        await ChatManager.Insert(newMessage);
+        await LoadMessages();
+    }
+    private async Task LoadMessages()
+    {
+        messages = await ChatManager.GetMessagesByIssue((uint)IssueId);
+       // StateHasChanged(); // aktualizace UI (v případě potřeby)
+    }
+}

@@ -1,0 +1,38 @@
+﻿@rendermode InteractiveServer
+
+<select class="form-select w-25 mb-3" @bind="SelectedPersonId" @bind:event="onchange">
+    <option value="">-- Vyber osobu --</option>
+    @foreach (var p in Persons)
+    {
+        <option value="@p.Id">
+            @(p.PersonType == PersonType.PhysicalPerson
+                    ? $"{p.FirstName} {p.LastName}"
+                    : p.CompanyName)
+    </option>
+        }
+</select>
+
+
+@code {
+    [Parameter]
+    public IList<PersonDTO> Persons { get; set; } = new List<PersonDTO>();
+
+    private uint? selectedPersonId;
+
+    [Parameter]
+    public uint? SelectedPersonId
+    {
+        get => selectedPersonId ?? 0;
+        set
+        {
+            if (selectedPersonId != value)
+            {
+                selectedPersonId = value;
+                SelectedPersonIdChanged.InvokeAsync(value ?? 0);
+            }
+        }
+    }
+
+    [Parameter]
+    public EventCallback<uint> SelectedPersonIdChanged { get; set; }
+}

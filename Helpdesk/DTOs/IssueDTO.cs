@@ -13,9 +13,9 @@ namespace Helpdesk.DTOs
 		public string? Description { get; set; } = string.Empty;
 		public DateOnly DueDate { get; set; }
 		public string RequesterId { get; set; } = string.Empty;
-		public Person Requester { get; set; } = new();
+		public PersonDTO Requester { get; set; } = new();
 		public string AssigneeId { get; set; } = string.Empty;
-		public Person Assignee { get; set; } = new();
+		public PersonDTO Assignee { get; set; } = new();
 		public DateOnly CreatedDate { get; set; }
 		public IssuePriority Priority { get; set; }
 		public IssueStatus Status { get; set; }

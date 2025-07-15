@@ -61,8 +61,7 @@ else
         </div>
    
         <div class="col-6">
-            <p>Chat v pravém sloupci... </p>
-            <p>:) :) :)</p>
+           <ChatComponent Persons="Persons" IssueId="Id"/>
         </div>
     </div>
 <NavLink href="/issues" class="btn btn-secondary mt-3">Back</NavLink>
@@ -73,10 +72,13 @@ else
     [Parameter]
     public int Id { get; set; }
     private IssueDTO? issue;
+    public IList<PersonDTO> Persons { get; set; } = new List<PersonDTO>();
 
     protected override async Task OnInitializedAsync()
     {
-
         issue = await IssueManager.GetById((uint)Id);
+        Persons.Add(issue.Assignee);
+        Persons.Add(issue.Requester);
+
     }
 }
