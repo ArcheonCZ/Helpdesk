@@ -20,6 +20,7 @@ builder.Services.AddDbContext<HelpdeskDbContext>(options =>
 //Registrace DI
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddScoped<IIssueRepository, IssueRepository>();
+builder.Services.AddScoped<ISubIssueRepository, SubIssueRepository>();
 builder.Services.AddScoped<IPersonManager, PersonManager>();
 builder.Services.AddScoped<IIssueManager, IssueManager>();
 

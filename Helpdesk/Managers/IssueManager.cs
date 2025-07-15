@@ -62,6 +62,7 @@ namespace Helpdesk.Managers
 		public async Task<SubIssueDTO> CreateSubIssue(SubIssueDTO subIssueDTO)
 		{
 			SubIssue subIssue = _mapper.Map<SubIssue>(subIssueDTO);
+			subIssue.DueDate = DateOnly.FromDateTime(subIssueDTO.DueDate);
 			subIssue = await _subIssueRepository.Insert(subIssue);
 			return _mapper.Map<SubIssueDTO>(subIssue);
 		}

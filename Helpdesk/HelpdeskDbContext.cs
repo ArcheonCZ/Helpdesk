@@ -17,6 +17,8 @@ namespace Helpdesk
 		{
 			base.OnModelCreating(modelBuilder);
 
+			modelBuilder.Entity<Issue>().ToTable("Issues");
+			modelBuilder.Entity<SubIssue>().ToTable("SubIssues");
 
 			modelBuilder.Entity<Issue>()
 				.HasOne(b => b.Requester)
@@ -101,7 +103,7 @@ namespace Helpdesk
 					DueDate = new DateOnly(2025, 7, 20),
 					RequesterId = 3,   
 					AssigneeId = 1,   
-					Status = IssueStatus.New,
+					Status = IssueStatus.Resolved,
 					Priority = IssuePriority.Low
 				}
 			);

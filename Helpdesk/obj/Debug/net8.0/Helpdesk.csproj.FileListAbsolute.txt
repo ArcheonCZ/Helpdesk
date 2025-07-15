@@ -135,7 +135,6 @@ C:\project-helpdesk\Helpdesk\Helpdesk\obj\Debug\net8.0\staticwebassets.build.jso
 C:\project-helpdesk\Helpdesk\Helpdesk\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\project-helpdesk\Helpdesk\Helpdesk\obj\Debug\net8.0\staticwebassets.development.json
 C:\project-helpdesk\Helpdesk\Helpdesk\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\project-helpdesk\Helpdesk\Helpdesk\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\project-helpdesk\Helpdesk\Helpdesk\obj\Debug\net8.0\Helpdesk.csproj.Up2Date
 C:\project-helpdesk\Helpdesk\Helpdesk\obj\Debug\net8.0\Helpdesk.dll
 C:\project-helpdesk\Helpdesk\Helpdesk\obj\Debug\net8.0\refint\Helpdesk.dll
@@ -304,3 +303,4 @@ C:\Users\Dan\Desktop\Helpdesk\Helpdesk\obj\Debug\net8.0\refint\Helpdesk.dll
 C:\Users\Dan\Desktop\Helpdesk\Helpdesk\obj\Debug\net8.0\Helpdesk.pdb
 C:\Users\Dan\Desktop\Helpdesk\Helpdesk\obj\Debug\net8.0\Helpdesk.genruntimeconfig.cache
 C:\Users\Dan\Desktop\Helpdesk\Helpdesk\obj\Debug\net8.0\ref\Helpdesk.dll
+C:\project-helpdesk\Helpdesk\Helpdesk\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

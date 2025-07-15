@@ -1,5 +1,62 @@
-﻿<h3>SubIssueList</h3>
+﻿@inject IIssueManager IssueManager
+
+@if (subIssues.Count == 0)
+{
+    <p>Žádné podúkoly.</p>
+}
+else
+{
+    <ul>
+        @foreach (var sub in subIssues)
+        {
+            <li>
+                <b>@sub.Title</b> – @sub.DueDate.ToString("d")
+                <br />
+                @sub.Description
+            </li>
+        }
+    </ul>
+}
+
+<hr />
+
+<h5>Přidat nový podúkol</h5>
+
+<EditForm Model="@newSubIssue" OnValidSubmit="@AddSubIssue" FormName="SubIssueForm">
+    <InputText @bind-Value="newSubIssue.Title" placeholder="Název" />
+    <br />
+    <InputTextArea @bind-Value="newSubIssue.Description" placeholder="Popis" />
+    <br />
+    <p>Due Date</p>
+    <InputDate @bind-Value="newSubIssue.DueDate" />
+    <br />
+    <button type="submit">Přidat</button>
+</EditForm>
 
 @code {
 
+    [Parameter] public uint IssueId { get; set; }
+
+    private IList<SubIssueDTO> subIssues = new List<SubIssueDTO>();
+    private SubIssueDTO newSubIssue = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadSubIssues();
+        newSubIssue.IssueId = IssueId; // naplnit rovnou správné ID
+    }
+
+    private async Task LoadSubIssues()
+    {
+        subIssues = await IssueManager.GetAllSubissues(IssueId);
+    }
+
+    private async Task AddSubIssue()
+    {
+        Console.WriteLine($"Title: {newSubIssue.Title}, DueDate: {newSubIssue.DueDate}");
+        await IssueManager.CreateSubIssue(newSubIssue);
+        Console.WriteLine("IssueId předávané SubIssue: "+IssueId);
+      //  newSubIssue = new SubIssueDTO { IssueId = IssueId }; // reset formuláře
+        await LoadSubIssues();
+    }
 }

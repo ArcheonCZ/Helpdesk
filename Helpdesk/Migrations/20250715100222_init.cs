@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Helpdesk.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -113,6 +113,29 @@ namespace Helpdesk.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "SubIssues",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IssueId = table.Column<long>(type: "bigint", nullable: false),
+                    IsDone = table.Column<bool>(type: "bit", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DueDate = table.Column<DateOnly>(type: "date", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SubIssues", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SubIssues_Issues_IssueId",
+                        column: x => x.IssueId,
+                        principalTable: "Issues",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Persons",
                 columns: new[] { "Id", "CompanyId", "CompanyName", "DateOfBirth", "Email", "FirstName", "IdentificationNumber", "IsApplicationAdmin", "LastName", "PersonType" },
@@ -157,6 +180,11 @@ namespace Helpdesk.Migrations
                 name: "IX_Issues_RequesterId",
                 table: "Issues",
                 column: "RequesterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubIssues_IssueId",
+                table: "SubIssues",
+                column: "IssueId");
         }
 
         /// <inheritdoc />
@@ -167,6 +195,9 @@ namespace Helpdesk.Migrations
 
             migrationBuilder.DropTable(
                 name: "ChatMessage");
+
+            migrationBuilder.DropTable(
+                name: "SubIssues");
 
             migrationBuilder.DropTable(
                 name: "Issues");

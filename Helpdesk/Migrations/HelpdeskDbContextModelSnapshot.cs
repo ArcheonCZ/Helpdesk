@@ -119,7 +119,7 @@ namespace Helpdesk.Migrations
 
                     b.HasIndex("RequesterId");
 
-                    b.ToTable("Issues");
+                    b.ToTable("Issues", (string)null);
 
                     b.HasData(
                         new
@@ -232,6 +232,38 @@ namespace Helpdesk.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Helpdesk.Models.SubIssue", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("DueDate")
+                        .HasColumnType("date");
+
+                    b.Property<bool>("IsDone")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("IssueId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IssueId");
+
+                    b.ToTable("SubIssues", (string)null);
+                });
+
             modelBuilder.Entity("Helpdesk.Models.ChatMessage", b =>
                 {
                     b.HasOne("Helpdesk.Models.Issue", null)
@@ -273,11 +305,24 @@ namespace Helpdesk.Migrations
                     b.Navigation("Requester");
                 });
 
+            modelBuilder.Entity("Helpdesk.Models.SubIssue", b =>
+                {
+                    b.HasOne("Helpdesk.Models.Issue", "Issue")
+                        .WithMany("SubIssues")
+                        .HasForeignKey("IssueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Issue");
+                });
+
             modelBuilder.Entity("Helpdesk.Models.Issue", b =>
                 {
                     b.Navigation("Chat");
 
                     b.Navigation("Documents");
+
+                    b.Navigation("SubIssues");
                 });
 #pragma warning restore 612, 618
         }
