@@ -11,6 +11,7 @@ else
         @foreach (var sub in subIssues)
         {
             <li>
+                <input type="checkbox" checked="@sub.IsDone" @onchange="() => ToggleSubIssueDone(sub.Id)" />
                 <b>@sub.Title</b> – @sub.DueDate.ToString("d")
                 <br />
                 @sub.Description
@@ -69,5 +70,12 @@ else
             Console.WriteLine("Chyba při přidání subissue: " + ex.Message);
             // případně zobrazit UI chybovou hlášku
         }
+    }
+
+    private async Task ToggleSubIssueDone(uint subIssueId)
+    {
+        await IssueManager.ToggleSubIssueDone(subIssueId);
+        await LoadSubIssues();
+        StateHasChanged();
     }
 }

@@ -9,5 +9,6 @@ namespace Helpdesk.DTOs
 		public string? Description { get; set; } = string.Empty;
 		public DateOnly DueDate { get; set; }
 		public uint IssueId { get; set; }
+		public bool IsDone { get; set; } 
 	}
 }
