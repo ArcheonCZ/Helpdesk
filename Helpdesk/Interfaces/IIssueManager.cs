@@ -16,6 +16,7 @@ namespace Helpdesk.Interfaces
 		Task<IList<SubIssueDTO>> GetAllSubissues(uint issueId);
 		Task<SubIssueDTO> CreateSubIssue(SubIssueDTO subIssueDTO);
 		Task ToggleSubIssueDone(uint subIssueId);
+		Task<IssueDTO> CreateNewIssue(IssueDTO issueDTO);
 
 	}
 }

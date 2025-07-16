@@ -54,6 +54,13 @@ namespace Helpdesk.Managers
 			return _mapper.Map<IList<IssueDTO>>(issuesFound);
 		}
 
+		public async Task<IssueDTO> CreateNewIssue(IssueDTO issueDTO)
+		{
+			Issue issue = _mapper.Map<Issue>(issueDTO);
+			issue = await _issueRepository.Insert(issue);
+			return _mapper.Map<IssueDTO>(issue);
+		}
+
 		public async Task<IList<SubIssueDTO>>GetAllSubissues(uint issueId)
 		{
 			IList<SubIssue> subIssuesFound = await _subIssueRepository.GetAllSubIssues(issueId);

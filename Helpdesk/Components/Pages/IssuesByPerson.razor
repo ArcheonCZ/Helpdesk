@@ -5,14 +5,18 @@
 
 
 <h3>Issues by @personRole</h3>
-
-<PersonSelect Persons="@persons" SelectedPersonId="@SelectedPersonId" SelectedPersonIdChanged="OnPersonSelected" />
-
+<div class="col-6">
+    <PersonSelect Persons="@persons" SelectedPersonId="@SelectedPersonId" SelectedPersonIdChanged="OnPersonSelected" />
+</div>
 
 
 @if (issues.Any())
 {
     <IssueTable Issues="@issues" />
+}
+else
+{
+    <p>No issues found</p>
 }
 
 @code {
@@ -24,30 +28,25 @@
     private IList<IssueDTO> issues = new List<IssueDTO>();
     private IList<PersonDTO> persons = new List<PersonDTO>();
 
-    protected override async Task OnInitializedAsync ()
+    protected override async Task OnInitializedAsync()
     {
         persons = await PersonManager.GetAll();
         Console.WriteLine("test při načtení stránky");
 
     }
 
-    private async Task OnPersonSelected(uint id) //(ChangeEventArgs e)
+    private async Task OnPersonSelected(uint id)
     {
         Console.WriteLine("zavolán ONPERSONCHANGED");
-        // if (uint.TryParse(e.Value?.ToString(), out var id))
-        // {
-            Console.WriteLine($"Zvoleno ID: {id}");
-            SelectedPersonId = id;
-            issues = personRole switch
-            {
-                "assignee" => await IssueManager.GetAllIssuesByAssignee(SelectedPersonId),
-                "requester" => await IssueManager.GetAllIssuesByRequester(SelectedPersonId),
-                _ => []
-            };
-            
-        // }
-        // else
-        //     Console.WriteLine("Nepodařilo se naparsovat id na uint");
+        Console.WriteLine($"Zvoleno ID: {id}");
+        SelectedPersonId = id;
+        issues = personRole switch
+        {
+            "assignee" => await IssueManager.GetAllIssuesByAssignee(SelectedPersonId),
+            "requester" => await IssueManager.GetAllIssuesByRequester(SelectedPersonId),
+            _ => []
+        };
+
     }
 
 

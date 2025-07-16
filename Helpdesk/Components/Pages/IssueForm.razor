@@ -1,0 +1,84 @@
+﻿@page "/issues/new"
+@inject NavigationManager Navigation
+@inject IIssueManager IssueManager
+@inject IPersonManager PersonManager
+@using Helpdesk.Enums
+@rendermode InteractiveServer
+
+<h3>Submit new issue</h3>
+
+<EditForm Model="@newIssue" OnValidSubmit="@CreateNewIssue" FormName="IssueForm">
+
+    <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <InputText id="title" @bind-Value="newIssue.Title" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <InputTextArea id="description" @bind-Value="newIssue.Description" class="form-control" rows="3" />
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label class="form-label">Due Date</label>
+            <InputDate @bind-Value="newIssue.DueDate" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Created Date</label>
+            <InputDate @bind-Value="newIssue.CreatedDate" class="form-control" disabled />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label class="form-label">Requester</label>
+            <PersonSelect Persons="@persons" @bind-SelectedPersonId="newIssue.RequesterId" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Assignee</label>
+            <PersonSelect Persons="@persons" @bind-SelectedPersonId="newIssue.AssigneeId" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label class="form-label">Priority</label>
+            <InputSelect @bind-Value="newIssue.Priority" class="form-select">
+                @foreach (var priority in priorities)
+                {
+                    <option value="@priority">@priority</option>
+                }
+            </InputSelect>
+        </div>
+
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary">Create Issue</button>
+    </div>
+</EditForm>
+
+
+@code {
+    IssueDTO newIssue = new()
+    {
+        CreatedDate = DateOnly.FromDateTime(DateTime.Today),
+        DueDate = DateOnly.FromDateTime(DateTime.Today),
+        Status = IssueStatus.New
+    };
+
+    private IList<PersonDTO> persons = new List<PersonDTO>();
+    private List<IssuePriority> priorities = Enum.GetValues(typeof(IssuePriority)).Cast<IssuePriority>().ToList();
+    private List<IssueStatus> statuses = Enum.GetValues(typeof(IssueStatus)).Cast<IssueStatus>().ToList();
+
+    protected override async Task OnInitializedAsync()
+    {
+        persons = await PersonManager.GetAll();
+    }
+    private async Task CreateNewIssue()
+    {
+        await IssueManager.CreateNewIssue(newIssue);
+        Navigation.NavigateTo("/issues");
+    }
+}
