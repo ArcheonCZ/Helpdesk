@@ -8,34 +8,53 @@ namespace Helpdesk.Repositories
 {
 	public class IssueRepository : BaseRepository<Issue>, IIssueRepository
 	{
+		
 		private static readonly IssueStatus[] openStatuses = new[] {
 				IssueStatus.New,
 				IssueStatus.InProgress,
 				IssueStatus.WaitingForResponse
 			};
-		public IssueRepository(HelpdeskDbContext helpdeskDbContext) : base(helpdeskDbContext)
+		public IssueRepository(IDbContextFactory<HelpdeskDbContext> contextFactory):base(contextFactory)//(HelpdeskDbContext helpdeskDbContext) : base(helpdeskDbContext)
 		{
 		}
 
 
 		public new async Task<IList<Issue>> GetAll()
 		{
-			return await GetAllIssuesQuery().ToListAsync();
+			using var context = _contextFactory.CreateDbContext();
+			return await context.Issues!
+				.Include(i => i.Requester)
+				.Include(i => i.Assignee)
+				.Include(i => i.SubIssues)
+				.ToListAsync();
 		}
 		public new async Task<Issue?> FindById(uint id)
 		{
-			return await GetAllIssuesQuery().FirstOrDefaultAsync(i => i.Id == id);
+			using var context = _contextFactory.CreateDbContext();
+			return await context.Issues!
+				.Include(i => i.Requester)
+				.Include(i => i.Assignee)
+				.Include(i => i.SubIssues)
+				.FirstOrDefaultAsync(i => i.Id == id);
 		}
 		public async Task<IList<Issue>> GetIssuesByRequester(uint id)
 		{
-			IList<Issue> issuesFound = await GetAllIssuesQuery()
+			using var context = _contextFactory.CreateDbContext();
+			IList<Issue> issuesFound = await context.Issues!
+				.Include(i => i.Requester)
+				.Include(i => i.Assignee)
+				.Include(i => i.SubIssues)
 				.Where(i => i.RequesterId == id)
 				.ToListAsync();
 			return issuesFound;
 		}
 		public async Task<IList<Issue>> GetIssuesByAssignee(uint id)
 		{
-			IList<Issue> issuesFound = await GetAllIssuesQuery()
+			using var context = _contextFactory.CreateDbContext();
+			IList<Issue> issuesFound = await context.Issues!
+				.Include(i => i.Requester)
+				.Include(i => i.Assignee)
+				.Include(i => i.SubIssues)
 				.Where(i => i.AssigneeId == id)
 				.ToListAsync();
 			return issuesFound;
@@ -43,36 +62,39 @@ namespace Helpdesk.Repositories
 
 		public async Task<IList<Issue>> GetUnresolvedIssues()
 		{
-			IList<Issue> issuesFound = await GetAllIssuesQuery()
+			using var context = _contextFactory.CreateDbContext();
+			IList<Issue> issuesFound = await context.Issues!
+				.Include(i => i.Requester)
+				.Include(i => i.Assignee)
+				.Include(i => i.SubIssues)
 				.Where(i => openStatuses
 				.Contains(i.Status)).ToListAsync();
 			return issuesFound;
 		}
 		public async Task<IList<Issue>> GetUnresolvedOverdueIssues(bool subIssues = false)
 		{
+			using var context = _contextFactory.CreateDbContext();
 			DateOnly today = DateOnly.FromDateTime(DateTime.Now);
 			IList<Issue> issuesFound;
 			if (!subIssues)
-				issuesFound = await GetAllIssuesQuery()
+				issuesFound = await context.Issues!
+				.Include(i => i.Requester)
+				.Include(i => i.Assignee)
+				.Include(i => i.SubIssues)
 				.Where(i => openStatuses
 				.Contains(i.Status) && i.DueDate < today)
 				.ToListAsync();
 			else
-				issuesFound = await GetAllIssuesQuery()
+				issuesFound = await context.Issues!
+				.Include(i => i.Requester)
+				.Include(i => i.Assignee)
+				.Include(i => i.SubIssues)
 				.Where(i => openStatuses
 				.Contains(i.Status) && i.SubIssues.Any(s => s.DueDate < today))
 				.ToListAsync();
 			return issuesFound;
 		}
 
-		private IQueryable<Issue> GetAllIssuesQuery()
-		{
-			return _helpdeskDbContext.Issues!
-				.Include(i => i.Requester)
-				.Include(i => i.Assignee)
-				.Include(i => i.SubIssues);
-		}
-
-
+	
 	}
 }

@@ -19,23 +19,35 @@ else
         }
     </ul>
 }
+<br />
 
-<hr />
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">Add new subissue</h5>
+    <button type="submit" form="SubIssueForm" class="btn btn-primary">Add</button>
+</div>
 
-<h5>Přidat nový podúkol</h5>
+<EditForm Model="@newSubIssue" OnValidSubmit="@AddSubIssue" FormName="SubIssueForm" id="SubIssueForm">
+    <div class="container-fluid p-0">
+        <div class="row gx-3">
+            <div class="col">
+                <InputText @bind-Value="newSubIssue.Title" class="form-control" placeholder="Title" />
+            </div>
+            <div class="col-auto">
+                <InputDate @bind-Value="newSubIssue.DueDate" class="form-control" />
+            </div>
+        </div>
 
-<EditForm Model="@newSubIssue" OnValidSubmit="@AddSubIssue" FormName="SubIssueForm">
-    <InputText @bind-Value="newSubIssue.Title" placeholder="Název" />
-    <br />
-    <InputTextArea @bind-Value="newSubIssue.Description" placeholder="Popis" />
-    <br />
-    <p>Due Date</p>
-    <InputDate @bind-Value="newSubIssue.DueDate" />
-    <br />
-    <button type="submit">Přidat</button>
-@*     <p>Debug Title: @newSubIssue.Title</p>
-    <p>Debug DueDate: @newSubIssue.DueDate.ToString()</p> *@
+        <div class="mt-3">
+            <InputTextArea @bind-Value="newSubIssue.Description"
+                           class="form-control"
+                           rows="3"
+                           placeholder="Description" />
+        </div>
+    </div>
 </EditForm>
+
+
+
 
 
 @code {
@@ -63,7 +75,7 @@ else
             Console.WriteLine($"Title: {newSubIssue.Title}, DueDate: {newSubIssue.DueDate}");
             await IssueManager.CreateSubIssue(newSubIssue);
             Console.WriteLine("IssueId předávané SubIssue: " + IssueId);
-            //  newSubIssue = new SubIssueDTO { IssueId = IssueId }; // reset formuláře
+            newSubIssue = new SubIssueDTO { IssueId = IssueId }; // reset formuláře
             await LoadSubIssues();
         }
         catch (Exception ex)

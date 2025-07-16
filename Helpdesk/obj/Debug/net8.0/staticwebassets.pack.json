@@ -1,23 +1,27 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Dan\\Desktop\\Helpdesk\\Helpdesk\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Helpdesk.bundle.scp.css",
+      "Id": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Helpdesk.bundle.scp.css",
       "PackagePath": "staticwebassets\\Helpdesk.mis0bpreoa.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\Dan\\Desktop\\Helpdesk\\Helpdesk\\wwwroot\\app.css",
+      "Id": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\wwwroot\\.editorconfig",
+      "PackagePath": "staticwebassets\\.editorconfig"
+    },
+    {
+      "Id": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },
     {
-      "Id": "C:\\Users\\Dan\\Desktop\\Helpdesk\\Helpdesk\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Id": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\wwwroot\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\Dan\\Desktop\\Helpdesk\\Helpdesk\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Dan\\Desktop\\Helpdesk\\Helpdesk\\wwwroot\\favicon.png",
+      "Id": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {

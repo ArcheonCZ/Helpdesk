@@ -55,13 +55,15 @@ else
                 <div class="col-9">@issue.Status</div>
             </div>
             <div class="row mb-2">
+                <hr />
+                <b>SubIssues:</b>
                <SubIssueList IssueId="(uint)Id"/>
             </div>
           
         </div>
    
         <div class="col-6">
-           <ChatComponent Persons="Persons" IssueId="Id"/>
+           <ChatComponent Persons="Persons" IssueId="(uint)Id"/>
         </div>
     </div>
 <NavLink href="/issues" class="btn btn-secondary mt-3">Back</NavLink>

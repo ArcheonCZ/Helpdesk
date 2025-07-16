@@ -1,4 +1,4 @@
-using Helpdesk;
+﻿using Helpdesk;
 using Helpdesk.Components;
 using Helpdesk.Interfaces;
 using Helpdesk.Managers;
@@ -11,12 +11,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Razor komponenty (Blazor) 
 builder.Services.AddRazorComponents()
 				.AddInteractiveServerComponents();
-//builder.Services.AddSignalR(); //->je nutn� p�id�vat? nem�lo by b�t
+//builder.Services.AddSignalR(); //->je nutné pøidávat? nemìlo by být
 
 // Registrace EF Core s SQL Serverem
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<HelpdeskDbContext>(options =>
+//builder.Services.AddDbContext<HelpdeskDbContext>(options =>
+//factory na dbContext kvůli problémům s mnohonásobným přístupem k datareaderu (db)
+builder.Services.AddDbContextFactory<HelpdeskDbContext>(options =>
 	options.UseSqlServer(connectionString));
+
 //Registrace DI
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddScoped<IIssueRepository, IssueRepository>();
@@ -44,7 +47,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAntiforgery();
-// Napojen� Blazoru
+// Napojení Blazoru
 app.MapRazorComponents<App>()
 	.AddInteractiveServerRenderMode();
 

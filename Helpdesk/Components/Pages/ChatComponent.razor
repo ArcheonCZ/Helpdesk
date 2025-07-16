@@ -6,7 +6,7 @@
 
 @if (messages.Count == 0)
 {
-    <p>Žádné zprávy</p>
+    <p>No messages</p>
 }
 else
 {
@@ -22,16 +22,16 @@ else
 <div class="my-3">
 <PersonSelect Persons="@Persons" SelectedPersonId="@SelectedPersonId" SelectedPersonIdChanged="OnPersonSelected" />
 </div>
-<textarea @bind="newMessage.Message" placeholder="Napiš zprávu..." rows="3" class="form-control"></textarea>
+<textarea @bind="newMessage.Message" placeholder="Write a message..." rows="3" class="form-control"></textarea>
 <button class="btn btn-primary mt-2" @onclick="SendMessage">
-    Odeslat
+    Send
 </button>
 
 @code {
     [Parameter]
     public IList<PersonDTO> Persons { get; set; } = new List<PersonDTO>();
     [Parameter]
-    public int IssueId { get; set; }
+    public uint IssueId { get; set; }
     private uint SelectedPersonId { get; set; }
     private ChatMessageDTO newMessage = new();
     // private string newMessage = string.Empty;
@@ -53,17 +53,18 @@ else
         Console.WriteLine("Do newMessage.SenderId zadávám SelectedPersonId, které je: " + SelectedPersonId);
         Console.WriteLine("Do newMessage.SenderId dále zadávám IssueId, které je: " + IssueId);
         newMessage.SenderId = selectedId;
-        newMessage.IssueId = (uint)IssueId;
+        newMessage.IssueId = IssueId;
     }
     private async Task SendMessage()
     {
         Console.WriteLine("Odesílám zprávu: " + newMessage.Message);
         await ChatManager.Insert(newMessage);
+        newMessage = new ChatMessageDTO { IssueId = IssueId }; // reset formuláře
         await LoadMessages();
     }
     private async Task LoadMessages()
     {
-        messages = await ChatManager.GetMessagesByIssue((uint)IssueId);
+        messages = await ChatManager.GetMessagesByIssue(IssueId);
        // StateHasChanged(); // aktualizace UI (v případě potřeby)
     }
 }
