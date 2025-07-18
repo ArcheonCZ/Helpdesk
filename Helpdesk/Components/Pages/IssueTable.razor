@@ -1,51 +1,71 @@
-﻿
+﻿@inject IIssueManager IssueManager
+@rendermode InteractiveServer
 
-   <table class="table">
-        <thead>
+
+@if (IsDeleted)
+{
+    <div class="alert alert-success">
+        Záznam byl úspěšně smazán.
+    </div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            @* <th>Description</th> *@
+            <th>Created Date</th>
+            <th>Due Date</th>
+            <th>Priority</th>
+            <th>Assignee</th>
+            <th>Requester</th>
+            <th>Status</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var issue in Issues)
+        {
+
             <tr>
-                <th>Title</th>
-                @* <th>Description</th> *@
-                <th>Created Date</th>
-                <th>Due Date</th>
-                <th>Priority</th>
-                <th>Assignee</th>
-                <th>Requester</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var issue in Issues)
-            {
-               
-                <tr>
-                    <td>
-                        <NavLink class="nav-link p-0 d-block" href="@($"issues/{issue.Id}")">
-                            @issue.Title
-                         </NavLink>
-                    </td>
-                    @* <td>@issue.Description</td> *@
-                    <td>@issue.CreatedDate</td>
-                    <td>@issue.DueDate</td>
-                    <td>@issue.Priority</td>
-                    <td>
-                        @(issue.Assignee.PersonType == PersonType.PhysicalPerson
+                <td>
+                    <NavLink class="nav-link p-0 d-block" href="@($"issues/{issue.Id}")">
+                        @issue.Title
+                    </NavLink>
+                </td>
+                @* <td>@issue.Description</td> *@
+                <td>@issue.CreatedDate</td>
+                <td>@issue.DueDate</td>
+                <td>@issue.Priority</td>
+                <td>
+                    @(issue.Assignee.PersonType == PersonType.PhysicalPerson
                                         ? $"{issue.Assignee.FirstName} {issue.Assignee.LastName}"
                                         : issue.Assignee.CompanyName)
-                    </td>
-                    <td>
-                        @(issue.Requester.PersonType == PersonType.PhysicalPerson
+                </td>
+                <td>
+                    @(issue.Requester.PersonType == PersonType.PhysicalPerson
                                         ? $"{issue.Requester.FirstName} {issue.Requester.LastName}"
                                         : issue.Requester.CompanyName)
-                    </td>
-                    <td>@issue.Status</td>
-                </tr>
-                
-            }
-        </tbody>
-      
-    </table>
+                </td>
+                <td>@issue.Status</td>
+                <td><button class="btn btn-danger" @onclick="async ()=> IsDeleted = await DeleteIssue(issue.Id)">Delete</button></td>
+            </tr>
+
+        }
+    </tbody>
+
+</table>
 
 @code {
     [Parameter]
     public IList<IssueDTO> Issues { get; set; } = new List<IssueDTO>();
+    private bool IsDeleted = false;
+
+    private async Task<bool> DeleteIssue (uint Id)
+    {
+        Console.WriteLine("volám deleteIssue v pohledu");
+        bool success = await IssueManager.DeleteIssue(Id);
+        if (success)
+            StateHasChanged();
+        return success;
+    }
 }

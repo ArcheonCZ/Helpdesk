@@ -8,25 +8,30 @@
 <h3>Submit new issue</h3>
 
 <EditForm Model="@newIssue" OnValidSubmit="@CreateNewIssue" FormName="IssueForm">
-
+    <DataAnnotationsValidator />
+    <ValidationSummary />
     <div class="mb-3">
         <label for="title" class="form-label">Title</label>
         <InputText id="title" @bind-Value="newIssue.Title" class="form-control" />
+        <ValidationMessage For="@(() => newIssue.Title)" />
     </div>
 
     <div class="mb-3">
         <label for="description" class="form-label">Description</label>
         <InputTextArea id="description" @bind-Value="newIssue.Description" class="form-control" rows="3" />
+        <ValidationMessage For="@(() => newIssue.Description)" />
     </div>
 
     <div class="row mb-3">
         <div class="col-md-6">
             <label class="form-label">Due Date</label>
             <InputDate @bind-Value="newIssue.DueDate" class="form-control" />
+            <ValidationMessage For="@(() => newIssue.DueDate)" />
         </div>
         <div class="col-md-6">
             <label class="form-label">Created Date</label>
             <InputDate @bind-Value="newIssue.CreatedDate" class="form-control" disabled />
+            <ValidationMessage For="@(() => newIssue.CreatedDate)" />
         </div>
     </div>
 
@@ -34,10 +39,12 @@
         <div class="col-md-6">
             <label class="form-label">Requester</label>
             <PersonSelect Persons="@persons" @bind-SelectedPersonId="newIssue.RequesterId" />
+            <ValidationMessage For="@(() => newIssue.RequesterId)" />
         </div>
         <div class="col-md-6">
             <label class="form-label">Assignee</label>
             <PersonSelect Persons="@persons" @bind-SelectedPersonId="newIssue.AssigneeId" />
+            <ValidationMessage For="@(() => newIssue.AssigneeId)" />
         </div>
     </div>
 
@@ -50,6 +57,7 @@
                     <option value="@priority">@priority</option>
                 }
             </InputSelect>
+            <ValidationMessage For="@(() => newIssue.Priority)" />
         </div>
 
     </div>
@@ -61,7 +69,7 @@
 
 
 @code {
-    IssueDTO newIssue = new()
+    IssueCreateDTO newIssue = new()
     {
         CreatedDate = DateOnly.FromDateTime(DateTime.Today),
         DueDate = DateOnly.FromDateTime(DateTime.Today),
@@ -78,6 +86,8 @@
     }
     private async Task CreateNewIssue()
     {
+        Console.WriteLine("newIssue.AssigneeId: " + newIssue.AssigneeId);
+        Console.WriteLine("newIssue.RequesterId: " + newIssue.RequesterId);
         await IssueManager.CreateNewIssue(newIssue);
         Navigation.NavigateTo("/issues");
     }
