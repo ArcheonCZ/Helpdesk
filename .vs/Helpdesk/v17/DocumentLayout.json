@@ -3,72 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\interfaces\\idocumentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\interfaces\\idocumentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\components\\pages\\documentlist.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\components\\pages\\documentlist.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\interfaces\\ichatrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\interfaces\\ichatrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\components\\pages\\documentupload.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\components\\pages\\documentupload.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\models\\document.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\models\\document.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\components\\pages\\issuedetail.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\components\\pages\\issuedetail.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\models\\chatmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\models\\chatmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\dtos\\documentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\dtos\\documentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Migrations\\20250718105545_DescriptionNullable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Helpdesk\\Migrations\\20250718105545_DescriptionNullable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\models\\baseissue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\models\\baseissue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\dtos\\issuecreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\dtos\\issuecreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\dtos\\issuedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\dtos\\issuedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\models\\issue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\models\\issue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\components\\pages\\personselect.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\components\\pages\\personselect.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\components\\pages\\issueform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\components\\pages\\issueform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\components\\pages\\issuetable.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\components\\pages\\issuetable.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\components\\pages\\issues.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\components\\pages\\issues.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\interfaces\\iissuemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\interfaces\\iissuemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\managers\\issuemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\managers\\issuemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\repositories\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\repositories\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|c:\\users\\dajab\\desktop\\project\\helpdesk\\helpdesk\\wwwroot\\download.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{09354694-662D-488F-8C54-959EF11710EF}|Helpdesk\\Helpdesk.csproj|solutionrelative:helpdesk\\wwwroot\\download.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -78,227 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IChatRepository.cs",
-              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Interfaces\\IChatRepository.cs",
-              "RelativeDocumentMoniker": "Helpdesk\\Interfaces\\IChatRepository.cs",
-              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Interfaces\\IChatRepository.cs",
-              "RelativeToolTip": "Helpdesk\\Interfaces\\IChatRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T11:04:28.319Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "IDocumentRepository.cs",
-              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Interfaces\\IDocumentRepository.cs",
-              "RelativeDocumentMoniker": "Helpdesk\\Interfaces\\IDocumentRepository.cs",
-              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Interfaces\\IDocumentRepository.cs",
-              "RelativeToolTip": "Helpdesk\\Interfaces\\IDocumentRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T11:03:36.267Z",
+              "DocumentIndex": 4,
+              "Title": "Download.js",
+              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\wwwroot\\Download.js",
+              "RelativeDocumentMoniker": "Helpdesk\\wwwroot\\Download.js",
+              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\wwwroot\\Download.js",
+              "RelativeToolTip": "Helpdesk\\wwwroot\\Download.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-07-18T14:04:13.49Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ChatMessage.cs",
-              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Models\\ChatMessage.cs",
-              "RelativeDocumentMoniker": "Helpdesk\\Models\\ChatMessage.cs",
-              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Models\\ChatMessage.cs",
-              "RelativeToolTip": "Helpdesk\\Models\\ChatMessage.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T11:00:02.581Z",
+              "Title": "App.razor",
+              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Components\\App.razor",
+              "RelativeDocumentMoniker": "Helpdesk\\Components\\App.razor",
+              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Components\\App.razor",
+              "RelativeToolTip": "Helpdesk\\Components\\App.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-18T12:59:29.599Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DocumentDTO.cs",
-              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\DTOs\\DocumentDTO.cs",
-              "RelativeDocumentMoniker": "Helpdesk\\DTOs\\DocumentDTO.cs",
-              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\DTOs\\DocumentDTO.cs",
-              "RelativeToolTip": "Helpdesk\\DTOs\\DocumentDTO.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAYwAQAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T10:59:12.29Z",
+              "DocumentIndex": 0,
+              "Title": "DocumentList.razor",
+              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Components\\Pages\\DocumentList.razor",
+              "RelativeDocumentMoniker": "Helpdesk\\Components\\Pages\\DocumentList.razor",
+              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Components\\Pages\\DocumentList.razor",
+              "RelativeToolTip": "Helpdesk\\Components\\Pages\\DocumentList.razor",
+              "ViewState": "AgIAABEAAAAAAAAAAAAqwB8AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-18T12:52:18.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DocumentUpload.razor",
+              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Components\\Pages\\DocumentUpload.razor",
+              "RelativeDocumentMoniker": "Helpdesk\\Components\\Pages\\DocumentUpload.razor",
+              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Components\\Pages\\DocumentUpload.razor",
+              "RelativeToolTip": "Helpdesk\\Components\\Pages\\DocumentUpload.razor",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-18T12:50:32.657Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Document.cs",
-              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Models\\Document.cs",
-              "RelativeDocumentMoniker": "Helpdesk\\Models\\Document.cs",
-              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Models\\Document.cs",
-              "RelativeToolTip": "Helpdesk\\Models\\Document.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T10:57:57.547Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "20250718105545_DescriptionNullable.cs",
-              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Migrations\\20250718105545_DescriptionNullable.cs",
-              "RelativeDocumentMoniker": "Helpdesk\\Migrations\\20250718105545_DescriptionNullable.cs",
-              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Migrations\\20250718105545_DescriptionNullable.cs",
-              "RelativeToolTip": "Helpdesk\\Migrations\\20250718105545_DescriptionNullable.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T10:55:45.186Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IssueDTO.cs",
-              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\DTOs\\IssueDTO.cs",
-              "RelativeDocumentMoniker": "Helpdesk\\DTOs\\IssueDTO.cs",
-              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\DTOs\\IssueDTO.cs",
-              "RelativeToolTip": "Helpdesk\\DTOs\\IssueDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T10:54:12.857Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "BaseIssue.cs",
-              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Models\\BaseIssue.cs",
-              "RelativeDocumentMoniker": "Helpdesk\\Models\\BaseIssue.cs",
-              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Models\\BaseIssue.cs",
-              "RelativeToolTip": "Helpdesk\\Models\\BaseIssue.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T10:53:58.839Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "PersonSelect.razor",
-              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Components\\Pages\\PersonSelect.razor",
-              "RelativeDocumentMoniker": "Helpdesk\\Components\\Pages\\PersonSelect.razor",
-              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Components\\Pages\\PersonSelect.razor",
-              "RelativeToolTip": "Helpdesk\\Components\\Pages\\PersonSelect.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAkAAAAAAAAAA==",
+              "Title": "IssueDetail.razor",
+              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Components\\Pages\\IssueDetail.razor",
+              "RelativeDocumentMoniker": "Helpdesk\\Components\\Pages\\IssueDetail.razor",
+              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Components\\Pages\\IssueDetail.razor",
+              "RelativeToolTip": "Helpdesk\\Components\\Pages\\IssueDetail.razor",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAEMAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-18T10:51:35.268Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IssueCreateDTO.cs",
-              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\DTOs\\IssueCreateDTO.cs",
-              "RelativeDocumentMoniker": "Helpdesk\\DTOs\\IssueCreateDTO.cs",
-              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\DTOs\\IssueCreateDTO.cs",
-              "RelativeToolTip": "Helpdesk\\DTOs\\IssueCreateDTO.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAowBwAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T10:43:57.765Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Issue.cs",
-              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Models\\Issue.cs",
-              "RelativeDocumentMoniker": "Helpdesk\\Models\\Issue.cs",
-              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Models\\Issue.cs",
-              "RelativeToolTip": "Helpdesk\\Models\\Issue.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T10:43:36.5Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "IssueForm.razor",
-              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Components\\Pages\\IssueForm.razor",
-              "RelativeDocumentMoniker": "Helpdesk\\Components\\Pages\\IssueForm.razor",
-              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Components\\Pages\\IssueForm.razor",
-              "RelativeToolTip": "Helpdesk\\Components\\Pages\\IssueForm.razor",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAADsAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-18T10:40:02.905Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Issues.razor",
-              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Components\\Pages\\Issues.razor",
-              "RelativeDocumentMoniker": "Helpdesk\\Components\\Pages\\Issues.razor",
-              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Components\\Pages\\Issues.razor",
-              "RelativeToolTip": "Helpdesk\\Components\\Pages\\Issues.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-18T10:23:57.551Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "IIssueManager.cs",
-              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Interfaces\\IIssueManager.cs",
-              "RelativeDocumentMoniker": "Helpdesk\\Interfaces\\IIssueManager.cs",
-              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Interfaces\\IIssueManager.cs",
-              "RelativeToolTip": "Helpdesk\\Interfaces\\IIssueManager.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBMAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T10:14:17.614Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "BaseRepository.cs",
-              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Repositories\\BaseRepository.cs",
-              "RelativeDocumentMoniker": "Helpdesk\\Repositories\\BaseRepository.cs",
-              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Repositories\\BaseRepository.cs",
-              "RelativeToolTip": "Helpdesk\\Repositories\\BaseRepository.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T10:09:21.693Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "IssueManager.cs",
-              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Managers\\IssueManager.cs",
-              "RelativeDocumentMoniker": "Helpdesk\\Managers\\IssueManager.cs",
-              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Managers\\IssueManager.cs",
-              "RelativeToolTip": "Helpdesk\\Managers\\IssueManager.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAIwFoAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T10:09:12.066Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "IssueTable.razor",
-              "DocumentMoniker": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Components\\Pages\\IssueTable.razor",
-              "RelativeDocumentMoniker": "Helpdesk\\Components\\Pages\\IssueTable.razor",
-              "ToolTip": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\Components\\Pages\\IssueTable.razor",
-              "RelativeToolTip": "Helpdesk\\Components\\Pages\\IssueTable.razor",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAAEQAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-18T10:08:29.703Z",
+              "WhenOpened": "2025-07-18T12:35:12.889Z",
               "EditorCaption": ""
             }
           ]

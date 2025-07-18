@@ -3,6 +3,7 @@ using Helpdesk.DTOs;
 using Helpdesk.Interfaces;
 using Helpdesk.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Helpdesk.Managers
@@ -12,13 +13,19 @@ namespace Helpdesk.Managers
 		protected readonly IIssueRepository _issueRepository;
 		protected readonly ISubIssueRepository _subIssueRepository;
 		protected readonly IPersonManager _personManager;
+		protected readonly IDocumentRepository _documentRepository;
 		protected readonly IMapper _mapper;
 
-		public IssueManager(IIssueRepository issueRepository, ISubIssueRepository subIssueRepository, IPersonManager personManager, IMapper mapper)
+		public IssueManager(IIssueRepository issueRepository, 
+			ISubIssueRepository subIssueRepository, 
+			IPersonManager personManager,
+			IDocumentRepository documentRepository,
+			IMapper mapper)
 		{
 			_issueRepository = issueRepository;
 			_mapper = mapper;
 			_subIssueRepository = subIssueRepository;
+			_documentRepository = documentRepository;
 			_personManager = personManager;
 		}
 
@@ -94,5 +101,19 @@ namespace Helpdesk.Managers
 			return isDeleted;
 		}
 
+		public async Task<IList<DocumentDTO>?> GetAllDocumentsByIssue(uint issueId)
+		{ 
+			IList<Document> docsFound= await _documentRepository.GetAllByIssue(issueId);
+			if (docsFound == null)
+				return null;
+			return _mapper.Map <IList<DocumentDTO>>(docsFound);
+		}
+
+		public async Task<DocumentDTO> UploadDocument (DocumentDTO documentDTO)
+		{
+			Document doc = _mapper.Map<Document>(documentDTO);
+			doc = await _documentRepository.Insert(doc);
+			return _mapper.Map<DocumentDTO>(doc);
+		}
 	}
 }

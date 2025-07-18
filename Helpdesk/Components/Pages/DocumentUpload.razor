@@ -1,0 +1,55 @@
+﻿@inject IIssueManager IssueManager
+@rendermode InteractiveServer
+
+<h4>Upload Document</h4>
+
+<InputFile OnChange="OnInputFileChange" />
+
+@if (uploadMessage is not null)
+{
+    <div class="alert alert-info my-2">@uploadMessage</div>
+}
+
+@code {
+    private string? uploadMessage;
+    [Parameter]
+    public uint DocIssueId { get; set; }
+    [Parameter]
+    public EventCallback OnUploadFinished { get; set; }
+
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file == null)
+        {
+            uploadMessage = "No file selected.";
+            return;
+        }
+
+        try
+        {
+
+            using var stream = file.OpenReadStream();
+            var buffer = new byte[file.Size];
+            await stream.ReadAsync(buffer);
+
+            var docDto = new DocumentDTO
+                {
+                    FileName = file.Name,
+                    FileContent = buffer,
+                    FileType = file.ContentType,
+                    IssueId=DocIssueId
+                };
+
+            DocumentDTO uploaded = await IssueManager.UploadDocument(docDto);
+
+            uploadMessage = $"File '{uploaded.FileName}' uploaded successfully.";
+            await OnUploadFinished.InvokeAsync();
+        }
+        catch (Exception ex)
+        {
+            uploadMessage = $"Upload failed: {ex.Message}";
+        }
+    }
+}
+

@@ -40,7 +40,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        Console.Write("PersonData při startu komponenty" + Persons.Count +  IssueId);
+        // Console.WriteLine("PersonData při startu komponenty" + Persons.Count +  IssueId);
         if (Persons.Count > 0 && IssueId > 0)
         {
        await LoadMessages();

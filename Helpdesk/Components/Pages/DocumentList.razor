@@ -1,0 +1,65 @@
+﻿@inject IIssueManager IssueManager
+@rendermode InteractiveServer
+@inject IJSRuntime JS
+
+<h3>Documents</h3>
+
+@if (documents == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (!documents.Any())
+{
+    <p>No documents found.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>File Name</th>
+                <th>Content Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var doc in documents)
+            {
+                <tr>
+                    <td>@doc.FileName</td>
+                    <td>@doc.FileType</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" @onclick="async() => await DownloadDocument(doc)">Download</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+<DocumentUpload DocIssueId="(uint)DocIssueId" OnUploadFinished="RefreshDocumentList" />
+
+@code {
+    private IList<DocumentDTO>? documents;
+    [Parameter]
+    public uint DocIssueId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await RefreshDocumentList();
+    }
+
+    private async Task DownloadDocument(DocumentDTO doc)
+    {
+        var base64 = Convert.ToBase64String(doc.FileContent);
+        var fileName = doc.FileName;
+        var contentType = doc.FileType;
+        Console.WriteLine("jsem v downloadDocument metodě");
+        await JS.InvokeVoidAsync("downloadFileFromBase64", base64, contentType, fileName);
+        Console.WriteLine("jsem v downloadDocument metodě po downloadu");
+    }
+    private async Task RefreshDocumentList()
+    {
+        documents = await IssueManager.GetAllDocumentsByIssue(DocIssueId);
+    }
+}

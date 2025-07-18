@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nLiyOOq1cwqTMMscMkORTY0m3g6Qev511qdczriptPQ=",
+  "Hash": "k7NIieTF+9Ol8GOi6h1h8L7CmtH0kLnxgSjyWdXtEoc=",
   "Source": "Helpdesk",
   "BasePath": "_content/Helpdesk",
   "Mode": "Default",
@@ -141,6 +141,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Identity": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\wwwroot\\Download.js",
+      "SourceId": "Helpdesk",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\wwwroot\\",
+      "BasePath": "_content/Helpdesk",
+      "RelativePath": "Download#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "i6p2gvaise",
+      "Integrity": "+vfQWfvOltQoFrULV8HLUfUNEvMZFXEXv3ELJKOSx+g=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Download.js"
     },
     {
       "Identity": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\wwwroot\\favicon.png",
@@ -490,6 +511,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ="
+        }
+      ]
+    },
+    {
+      "Route": "Download.i6p2gvaise.js",
+      "AssetFile": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\wwwroot\\Download.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "355"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+vfQWfvOltQoFrULV8HLUfUNEvMZFXEXv3ELJKOSx+g=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Jul 2025 14:22:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "i6p2gvaise"
+        },
+        {
+          "Name": "label",
+          "Value": "Download.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-+vfQWfvOltQoFrULV8HLUfUNEvMZFXEXv3ELJKOSx+g="
+        }
+      ]
+    },
+    {
+      "Route": "Download.js",
+      "AssetFile": "C:\\Users\\dajab\\Desktop\\project\\Helpdesk\\Helpdesk\\wwwroot\\Download.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "355"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+vfQWfvOltQoFrULV8HLUfUNEvMZFXEXv3ELJKOSx+g=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Jul 2025 14:22:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-+vfQWfvOltQoFrULV8HLUfUNEvMZFXEXv3ELJKOSx+g="
         }
       ]
     },

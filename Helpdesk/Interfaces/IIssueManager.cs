@@ -18,8 +18,8 @@ namespace Helpdesk.Interfaces
 		Task ToggleSubIssueDone(uint subIssueId);
 		Task<IssueDTO> CreateNewIssue(IssueCreateDTO issueDTO);
 		Task<bool> DeleteIssue(uint id);
+		Task<IList<DocumentDTO>?> GetAllDocumentsByIssue(uint issueId);
+		Task<DocumentDTO> UploadDocument(DocumentDTO documentDTO);
 
-
-
-		}
+	}
 }

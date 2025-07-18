@@ -12,7 +12,7 @@
 }
 else
 {
-    <div class="row"> 
+    <div class="row">
         <div class="col-6">
             <div class="row mb-2">
                 <div class="col-3"><b>Title:</b></div>
@@ -38,18 +38,18 @@ else
                 <div class="col-3"><b>Assignee:</b></div>
                 <div class="col-9">
                     @(issue.Assignee.PersonType == PersonType.PhysicalPerson
-                                    ? $"{issue.Assignee.FirstName} {issue.Assignee.LastName}"
-                                    : issue.Assignee.CompanyName)
+                        ? $"{issue.Assignee.FirstName} {issue.Assignee.LastName}"
+                        : issue.Assignee.CompanyName)
                 </div>
-             </div>
-             <div class="row mb-2">
-                 <div class="col-3"><b>Requester:</b></div>
-                 <div class="col-9">
+            </div>
+            <div class="row mb-2">
+                <div class="col-3"><b>Requester:</b></div>
+                <div class="col-9">
                     @(issue.Requester.PersonType == PersonType.PhysicalPerson
-                                    ? $"{issue.Requester.FirstName} {issue.Requester.LastName}"
-                                    : issue.Requester.CompanyName)
+                        ? $"{issue.Requester.FirstName} {issue.Requester.LastName}"
+                        : issue.Requester.CompanyName)
                 </div>
-             </div>
+            </div>
             <div class="row mb-2">
                 <div class="col-3"><b>Status:</b></div>
                 <div class="col-9">@issue.Status</div>
@@ -57,16 +57,20 @@ else
             <div class="row mb-2">
                 <hr />
                 <b>SubIssues:</b>
-               <SubIssueList IssueId="(uint)Id"/>
+                <SubIssueList IssueId="(uint)Id" />
             </div>
-          
+
         </div>
-   
+
         <div class="col-6">
-           <ChatComponent Persons="Persons" IssueId="(uint)Id"/>
+            <div class="row mb-2">
+                <DocumentList DocIssueId="(uint)Id" />
+            </div>
+            <hr />
+            <ChatComponent Persons="Persons" IssueId="(uint)Id" />
         </div>
     </div>
-<NavLink href="/issues" class="btn btn-secondary mt-3">Back</NavLink>
+    <NavLink href="/issues" class="btn btn-secondary mt-3">Back</NavLink>
 }
 
 @code {

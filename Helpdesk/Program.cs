@@ -28,6 +28,7 @@ builder.Services.AddScoped<ISubIssueRepository, SubIssueRepository>();
 builder.Services.AddScoped<IPersonManager, PersonManager>();
 builder.Services.AddScoped<IIssueManager, IssueManager>();
 builder.Services.AddScoped<IChatManager, ChatManager>();
+builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
 
 //Registrace AutoMapper profilu
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));

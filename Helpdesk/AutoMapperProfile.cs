@@ -15,6 +15,7 @@ namespace Helpdesk
 				.ForMember(dest => dest.Assignee, opt => opt.Ignore());
 			CreateMap<SubIssue, SubIssueDTO>().ReverseMap();
 			CreateMap<ChatMessage, ChatMessageDTO>().ReverseMap();
+			CreateMap<Document, DocumentDTO>().ReverseMap();
 
 			CreateMap<DateTime, DateOnly>().ConvertUsing(dt => DateOnly.FromDateTime(dt));
 			CreateMap<DateOnly, DateTime>().ConvertUsing(da => da.ToDateTime(TimeOnly.MinValue));

@@ -85,6 +85,88 @@
       ]
     },
     {
+      "Route": "Download.i6p2gvaise.js",
+      "AssetFile": "Download.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "355"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+vfQWfvOltQoFrULV8HLUfUNEvMZFXEXv3ELJKOSx+g=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Jul 2025 14:22:08 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "i6p2gvaise"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-+vfQWfvOltQoFrULV8HLUfUNEvMZFXEXv3ELJKOSx+g="
+        },
+        {
+          "Name": "label",
+          "Value": "Download.js"
+        }
+      ]
+    },
+    {
+      "Route": "Download.js",
+      "AssetFile": "Download.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "355"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+vfQWfvOltQoFrULV8HLUfUNEvMZFXEXv3ELJKOSx+g=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Jul 2025 14:22:08 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-+vfQWfvOltQoFrULV8HLUfUNEvMZFXEXv3ELJKOSx+g="
+        }
+      ]
+    },
+    {
       "Route": "Helpdesk.mis0bpreoa.styles.css",
       "AssetFile": "Helpdesk.styles.css",
       "Selectors": [],
