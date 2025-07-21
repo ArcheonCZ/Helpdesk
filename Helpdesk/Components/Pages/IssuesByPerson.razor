@@ -31,14 +31,13 @@ else
     protected override async Task OnInitializedAsync()
     {
         persons = await PersonManager.GetAll();
-        Console.WriteLine("test při načtení stránky");
+     
 
     }
 
     private async Task OnPersonSelected(uint id)
     {
-        Console.WriteLine("zavolán ONPERSONCHANGED");
-        Console.WriteLine($"Zvoleno ID: {id}");
+
         SelectedPersonId = id;
         issues = personRole switch
         {

@@ -58,7 +58,6 @@ namespace Helpdesk.Repositories
 
 			if (existingEntity == null)
 			{
-                Console.WriteLine("Entita nenalezena");
                 throw new InvalidOperationException("Entity not found.");
                 
 			}
@@ -66,7 +65,6 @@ namespace Helpdesk.Repositories
 			context.Entry(existingEntity).CurrentValues.SetValues(entity);
             context.Entry(existingEntity).State = EntityState.Modified;
             var changes = await context.SaveChangesAsync();
-			Console.WriteLine("BaseRepository: počet změněnných záznamů: " + changes);
 			return existingEntity;
 		}
 

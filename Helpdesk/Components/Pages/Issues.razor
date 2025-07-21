@@ -34,7 +34,7 @@ else
     }
     private async Task ReloadIssues()
     {
-        Console.WriteLine("ReloadIssues voláno! filter: "+filter);
+        
         issues = filter switch
         {
             "overdue" => await IssueManager.GetAllOverdue(),

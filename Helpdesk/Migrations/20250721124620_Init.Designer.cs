@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Helpdesk.Migrations
 {
     [DbContext(typeof(HelpdeskDbContext))]
-    [Migration("20250721115850_Init")]
+    [Migration("20250721124620_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -142,7 +142,7 @@ namespace Helpdesk.Migrations
                             AssigneeId = 3L,
                             CreatedDate = new DateOnly(2025, 7, 2),
                             Description = "Firma nahlásila špatně spočítanou fakturu.",
-                            DueDate = new DateOnly(2025, 7, 20),
+                            DueDate = new DateOnly(2025, 8, 20),
                             Priority = 1,
                             RequesterId = 1L,
                             Status = 1,
@@ -154,7 +154,7 @@ namespace Helpdesk.Migrations
                             AssigneeId = 1L,
                             CreatedDate = new DateOnly(2025, 7, 1),
                             Description = "Zaměstnanec požaduje nové pracovní zařízení.",
-                            DueDate = new DateOnly(2025, 7, 20),
+                            DueDate = new DateOnly(2025, 8, 20),
                             Priority = 0,
                             RequesterId = 3L,
                             Status = 3,

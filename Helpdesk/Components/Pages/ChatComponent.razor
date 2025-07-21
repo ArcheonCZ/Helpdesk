@@ -40,7 +40,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        // Console.WriteLine("PersonData při startu komponenty" + Persons.Count +  IssueId);
         if (Persons.Count > 0 && IssueId > 0)
         {
        await LoadMessages();
@@ -50,14 +49,11 @@ else
     private void OnPersonSelected(uint selectedId)
     {
         SelectedPersonId = selectedId;
-        Console.WriteLine("Do newMessage.SenderId zadávám SelectedPersonId, které je: " + SelectedPersonId);
-        Console.WriteLine("Do newMessage.SenderId dále zadávám IssueId, které je: " + IssueId);
         newMessage.SenderId = selectedId;
         newMessage.IssueId = IssueId;
     }
     private async Task SendMessage()
     {
-        Console.WriteLine("Odesílám zprávu: " + newMessage.Message);
         await ChatManager.Insert(newMessage);
         newMessage = new ChatMessageDTO { IssueId = IssueId }; // reset formuláře
         await LoadMessages();

@@ -177,18 +177,12 @@ else
     }
     private async Task CreateNewIssue()
     {
-        Console.WriteLine("newIssue.AssigneeId: " + newIssue.AssigneeId);
-        Console.WriteLine("newIssue.RequesterId: " + newIssue.RequesterId);
         await IssueManager.CreateNewIssue(newIssue);
         Navigation.NavigateTo("/issues");
     }
     private async Task UpdateIssue()
     {
-        Console.WriteLine("Metoda UpdateIssue zavolána!");
-        Console.WriteLine("issueToEdit.Id: " + issueToEdit.Id);
-        Console.WriteLine("issueToEdit.Status: " + issueToEdit.Status);
         await IssueManager.UpdateIssue(issueToEdit);
-        Console.WriteLine("issueToEdit.Status po zavolání metody: " + issueToEdit.Status);
         Navigation.NavigateTo("/issues");
     }
 }

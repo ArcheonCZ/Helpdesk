@@ -154,8 +154,8 @@ namespace Helpdesk.Migrations
                 values: new object[,]
                 {
                     { 1L, 3L, new DateOnly(2025, 7, 1), "Uživatel hlásí, že se nemůže přihlásit do systému.", new DateOnly(2025, 7, 7), 2, 2L, 0, "Problém s přihlášením" },
-                    { 2L, 3L, new DateOnly(2025, 7, 2), "Firma nahlásila špatně spočítanou fakturu.", new DateOnly(2025, 7, 20), 1, 1L, 1, "Chyba ve fakturaci" },
-                    { 3L, 1L, new DateOnly(2025, 7, 1), "Zaměstnanec požaduje nové pracovní zařízení.", new DateOnly(2025, 7, 20), 0, 3L, 3, "Požadavek na nové zařízení" },
+                    { 2L, 3L, new DateOnly(2025, 7, 2), "Firma nahlásila špatně spočítanou fakturu.", new DateOnly(2025, 8, 20), 1, 1L, 1, "Chyba ve fakturaci" },
+                    { 3L, 1L, new DateOnly(2025, 7, 1), "Zaměstnanec požaduje nové pracovní zařízení.", new DateOnly(2025, 8, 20), 0, 3L, 3, "Požadavek na nové zařízení" },
                     { 4L, 3L, new DateOnly(2025, 6, 15), "Požadavek, který byl již vyřešen.", new DateOnly(2025, 6, 30), 1, 2L, 3, "Vyřízený požadavek" },
                     { 5L, 3L, new DateOnly(2025, 6, 20), "Požadavek, který ještě čeká na vyřízení.", new DateOnly(2025, 7, 5), 2, 1L, 1, "Nevyřízený požadavek" },
                     { 6L, 3L, new DateOnly(2025, 6, 20), "Požadavek, který ještě čeká na vyřízení.", new DateOnly(2025, 7, 5), 2, 1L, 1, "Nevyřízený pož. s vyřízenými SubIssues" }

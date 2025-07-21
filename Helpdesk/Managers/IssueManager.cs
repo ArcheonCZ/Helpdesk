@@ -31,7 +31,6 @@ namespace Helpdesk.Managers
 
 		public async Task<IList<IssueDTO>> GetAll()
 		{
-            Console.WriteLine("Volám GetAll z issuesManageru");
 			return _mapper.Map<IList<IssueDTO>>(await _issueRepository.GetAll());
 		}
 		public async Task<IssueDTO> GetById(uint id)
@@ -74,7 +73,6 @@ namespace Helpdesk.Managers
 			if (issueDTO.Requester == null || issueDTO.Assignee == null)
 				throw new Exception("Requester or Assignee does not exist.");
 			Issue issue = _mapper.Map<Issue>(issueDTO);
-			Console.WriteLine("IM: issue.RequesterId: " + issue.RequesterId + "IM: issue.AssigneeId: " + issue.AssigneeId);
 
 			issue = await _issueRepository.Insert(issue);
 			return _mapper.Map<IssueDTO>(issue);
@@ -82,12 +80,10 @@ namespace Helpdesk.Managers
 
 		public async Task<IssueDTO> UpdateIssue(IssueDTO issueDTO)
 		{
-            Console.WriteLine("manager: issueDTO.Status: " + issueDTO.Status);
+        
             Issue issueToBeUpdated = _mapper.Map<Issue>(issueDTO);
 			issueToBeUpdated = await _issueRepository.Update(issueToBeUpdated);
-			 Console.WriteLine("manager po zavolání repo: issueToBeUpdated.Status: " + issueToBeUpdated.Status);
 			Issue? testIssue = await _issueRepository.FindById(issueDTO.Id);
-            Console.WriteLine("manager po zavolání issue z databáze: testIssue.Status: " + testIssue.Status);
             return _mapper.Map<IssueDTO>(issueToBeUpdated);
 		}
 
@@ -99,7 +95,6 @@ namespace Helpdesk.Managers
 		public async Task<SubIssueDTO> CreateSubIssue(SubIssueDTO subIssueDTO)
 		{
 			SubIssue subIssue = _mapper.Map<SubIssue>(subIssueDTO);
-			//subIssue.DueDate = DateOnly.FromDateTime(subIssueDTO.DueDate);
 			subIssue = await _subIssueRepository.Insert(subIssue);
 			return _mapper.Map<SubIssueDTO>(subIssue);
 		}

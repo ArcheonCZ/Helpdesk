@@ -72,9 +72,7 @@ else
     {
         try
         {
-            Console.WriteLine($"Title: {newSubIssue.Title}, DueDate: {newSubIssue.DueDate}");
             await IssueManager.CreateSubIssue(newSubIssue);
-            Console.WriteLine("IssueId předávané SubIssue: " + IssueId);
             newSubIssue = new SubIssueDTO { IssueId = IssueId }; // reset formuláře
             await LoadSubIssues();
         }

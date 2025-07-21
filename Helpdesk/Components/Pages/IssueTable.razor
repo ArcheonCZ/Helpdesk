@@ -69,11 +69,11 @@
 
     private async Task<bool> DeleteIssue (uint Id)
     {
-        Console.WriteLine("volám deleteIssue v pohledu");
+       
         bool success = await IssueManager.DeleteIssue(Id);
         if (success)
         {
-            Console.WriteLine("volám IssueDeleted.InvokeAsync() v pohledu");
+            
             await OnIssueDeleted.InvokeAsync(); // zavolá parent
         }
         return success;
