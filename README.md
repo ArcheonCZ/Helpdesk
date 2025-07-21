@@ -9,7 +9,7 @@
 - časová dotace: 36 hodin
  - asi mi to zabralo víc času, než jsem myslel, což bylo dáno kombinací:
 	- učení se nových věcí (díky projektu jsem se naučil pracovat s Blazorem)
-	- možná až zbytečné robustnosti proejktu
+	- možná až zbytečné robustnosti projektu
 	- "neočekávaných" chyb, které ale vždy zaručeně přijdou :-)
 
 Snad se Vám bude projekt líbit :-)
