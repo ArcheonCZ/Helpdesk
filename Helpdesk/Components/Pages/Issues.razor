@@ -3,13 +3,14 @@
 @page "/issues/filter/{filter}"
 @attribute [StreamRendering]
 @inject IIssueManager IssueManager
+@rendermode InteractiveServer
 
 <PageTitle>Issues</PageTitle>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="mb-0">Issues</h1>
     <div class="pe-4">
-    <NavLink href="/issues/new" class="btn btn-primary">New </NavLink>
+    <NavLink href="/issues/form" class="btn btn-primary">New</NavLink>
     </div>
 </div>
 
@@ -19,7 +20,7 @@
 }
 else
 {
- <IssueTable Issues="@issues"/>
+    <IssueTable Issues="@issues" OnIssueDeleted="@ReloadIssues" />
 }
 
 @code {
@@ -29,6 +30,11 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
+        await ReloadIssues();
+    }
+    private async Task ReloadIssues()
+    {
+        Console.WriteLine("ReloadIssues voláno! filter: "+filter);
         issues = filter switch
         {
             "overdue" => await IssueManager.GetAllOverdue(),
@@ -36,5 +42,7 @@ else
             "unresolved" => await IssueManager.GetAllUnresolved(),
             _ => await IssueManager.GetAll()
         };
+        
+        StateHasChanged();
     }
 }

@@ -19,7 +19,7 @@
             <th>Assignee</th>
             <th>Requester</th>
             <th>Status</th>
-            <th>Delete</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -47,7 +47,11 @@
                                         : issue.Requester.CompanyName)
                 </td>
                 <td>@issue.Status</td>
-                <td><button class="btn btn-danger" @onclick="async ()=> IsDeleted = await DeleteIssue(issue.Id)">Delete</button></td>
+                <td>
+                    <button class="btn btn-danger" @onclick="async ()=> IsDeleted = await DeleteIssue(issue.Id)">Delete</button>
+                <NavLink href="@($"/issues/form/{issue.Id}")" class ="btn btn-warning">Edit issue</NavLink>
+                </td>
+            
             </tr>
 
         }
@@ -58,6 +62,9 @@
 @code {
     [Parameter]
     public IList<IssueDTO> Issues { get; set; } = new List<IssueDTO>();
+    [Parameter]
+    public EventCallback OnIssueDeleted { get; set; }
+
     private bool IsDeleted = false;
 
     private async Task<bool> DeleteIssue (uint Id)
@@ -65,7 +72,10 @@
         Console.WriteLine("volám deleteIssue v pohledu");
         bool success = await IssueManager.DeleteIssue(Id);
         if (success)
-            StateHasChanged();
+        {
+            Console.WriteLine("volám IssueDeleted.InvokeAsync() v pohledu");
+            await OnIssueDeleted.InvokeAsync(); // zavolá parent
+        }
         return success;
     }
 }

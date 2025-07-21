@@ -14,7 +14,7 @@ namespace Helpdesk.Repositories
 				IssueStatus.InProgress,
 				IssueStatus.WaitingForResponse
 			};
-		public IssueRepository(IDbContextFactory<HelpdeskDbContext> contextFactory):base(contextFactory)//(HelpdeskDbContext helpdeskDbContext) : base(helpdeskDbContext)
+		public IssueRepository(IDbContextFactory<HelpdeskDbContext> contextFactory):base(contextFactory)
 		{
 		}
 
@@ -89,8 +89,7 @@ namespace Helpdesk.Repositories
 				.Include(i => i.Requester)
 				.Include(i => i.Assignee)
 				.Include(i => i.SubIssues)
-				.Where(i => openStatuses
-				.Contains(i.Status) && i.SubIssues.Any(s => s.DueDate < today))
+				.Where(i => openStatuses.Contains(i.Status) && i.SubIssues.Any(s => s.DueDate < today && !s.IsDone))
 				.ToListAsync();
 			return issuesFound;
 		}

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Helpdesk.Migrations
 {
     [DbContext(typeof(HelpdeskDbContext))]
-    [Migration("20250715100222_init")]
-    partial class init
+    [Migration("20250721115850_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,7 +33,7 @@ namespace Helpdesk.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<long?>("IssueId")
+                    b.Property<long>("IssueId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Message")
@@ -49,7 +49,7 @@ namespace Helpdesk.Migrations
 
                     b.HasIndex("SenderId");
 
-                    b.ToTable("ChatMessage");
+                    b.ToTable("ChatMessages");
                 });
 
             modelBuilder.Entity("Helpdesk.Models.Document", b =>
@@ -72,14 +72,14 @@ namespace Helpdesk.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("IssueId")
+                    b.Property<long>("IssueId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
                     b.HasIndex("IssueId");
 
-                    b.ToTable("Document");
+                    b.ToTable("Documents");
                 });
 
             modelBuilder.Entity("Helpdesk.Models.Issue", b =>
@@ -97,7 +97,6 @@ namespace Helpdesk.Migrations
                         .HasColumnType("date");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateOnly>("DueDate")
@@ -158,8 +157,44 @@ namespace Helpdesk.Migrations
                             DueDate = new DateOnly(2025, 7, 20),
                             Priority = 0,
                             RequesterId = 3L,
-                            Status = 0,
+                            Status = 3,
                             Title = "Požadavek na nové zařízení"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            AssigneeId = 3L,
+                            CreatedDate = new DateOnly(2025, 6, 15),
+                            Description = "Požadavek, který byl již vyřešen.",
+                            DueDate = new DateOnly(2025, 6, 30),
+                            Priority = 1,
+                            RequesterId = 2L,
+                            Status = 3,
+                            Title = "Vyřízený požadavek"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            AssigneeId = 3L,
+                            CreatedDate = new DateOnly(2025, 6, 20),
+                            Description = "Požadavek, který ještě čeká na vyřízení.",
+                            DueDate = new DateOnly(2025, 7, 5),
+                            Priority = 2,
+                            RequesterId = 1L,
+                            Status = 1,
+                            Title = "Nevyřízený požadavek"
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            AssigneeId = 3L,
+                            CreatedDate = new DateOnly(2025, 6, 20),
+                            Description = "Požadavek, který ještě čeká na vyřízení.",
+                            DueDate = new DateOnly(2025, 7, 5),
+                            Priority = 2,
+                            RequesterId = 1L,
+                            Status = 1,
+                            Title = "Nevyřízený pož. s vyřízenými SubIssues"
                         });
                 });
 
@@ -244,7 +279,6 @@ namespace Helpdesk.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateOnly>("DueDate")
@@ -265,13 +299,89 @@ namespace Helpdesk.Migrations
                     b.HasIndex("IssueId");
 
                     b.ToTable("SubIssues", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Description = "Uživatel požádal o reset hesla.",
+                            DueDate = new DateOnly(2025, 7, 3),
+                            IsDone = true,
+                            IssueId = 1L,
+                            Title = "Reset hesla"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Description = "Zkontrolovat chyby v autentizaci v logu.",
+                            DueDate = new DateOnly(2025, 7, 4),
+                            IsDone = false,
+                            IssueId = 1L,
+                            Title = "Zkontrolovat logy"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Description = "Zkontrolovat a vyčistit stará data.",
+                            DueDate = new DateOnly(2025, 6, 20),
+                            IsDone = true,
+                            IssueId = 4L,
+                            Title = "Vyčistit data"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            Description = "Pro jistotu provést zálohu.",
+                            DueDate = new DateOnly(2025, 6, 25),
+                            IsDone = true,
+                            IssueId = 4L,
+                            Title = "Zálohovat systém"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            Description = "Získat všechny informace od klienta.",
+                            DueDate = new DateOnly(2025, 7, 1),
+                            IsDone = false,
+                            IssueId = 5L,
+                            Title = "Připravit podklady"
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            Description = "Nastavit přidělené zařízení dle požadavků.",
+                            DueDate = new DateOnly(2025, 7, 3),
+                            IsDone = false,
+                            IssueId = 5L,
+                            Title = "Nakonfigurovat zařízení"
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            Description = "Získat všechny informace od klienta.",
+                            DueDate = new DateOnly(2025, 7, 1),
+                            IsDone = true,
+                            IssueId = 6L,
+                            Title = "Připravit podklady"
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            Description = "Nastavit přidělené zařízení dle požadavků.",
+                            DueDate = new DateOnly(2025, 7, 3),
+                            IsDone = true,
+                            IssueId = 6L,
+                            Title = "Nakonfigurovat zařízení"
+                        });
                 });
 
             modelBuilder.Entity("Helpdesk.Models.ChatMessage", b =>
                 {
-                    b.HasOne("Helpdesk.Models.Issue", null)
+                    b.HasOne("Helpdesk.Models.Issue", "Issue")
                         .WithMany("Chat")
-                        .HasForeignKey("IssueId");
+                        .HasForeignKey("IssueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Helpdesk.Models.Person", "Sender")
                         .WithMany()
@@ -279,14 +389,20 @@ namespace Helpdesk.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Issue");
+
                     b.Navigation("Sender");
                 });
 
             modelBuilder.Entity("Helpdesk.Models.Document", b =>
                 {
-                    b.HasOne("Helpdesk.Models.Issue", null)
+                    b.HasOne("Helpdesk.Models.Issue", "Issue")
                         .WithMany("Documents")
-                        .HasForeignKey("IssueId");
+                        .HasForeignKey("IssueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Issue");
                 });
 
             modelBuilder.Entity("Helpdesk.Models.Issue", b =>

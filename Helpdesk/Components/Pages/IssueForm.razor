@@ -1,87 +1,178 @@
-﻿@page "/issues/new"
+﻿@page "/issues/form"
+@page "/issues/form/{IssueId:int}"
 @inject NavigationManager Navigation
 @inject IIssueManager IssueManager
 @inject IPersonManager PersonManager
 @using Helpdesk.Enums
 @rendermode InteractiveServer
 
-<h3>Submit new issue</h3>
+<h3>@(IsEditMode ? "Edit Issue" : "Create New Issue")</h3>
 
-<EditForm Model="@newIssue" OnValidSubmit="@CreateNewIssue" FormName="IssueForm">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
-        <InputText id="title" @bind-Value="newIssue.Title" class="form-control" />
-        <ValidationMessage For="@(() => newIssue.Title)" />
-    </div>
-
-    <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <InputTextArea id="description" @bind-Value="newIssue.Description" class="form-control" rows="3" />
-        <ValidationMessage For="@(() => newIssue.Description)" />
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <label class="form-label">Due Date</label>
-            <InputDate @bind-Value="newIssue.DueDate" class="form-control" />
-            <ValidationMessage For="@(() => newIssue.DueDate)" />
-        </div>
-        <div class="col-md-6">
-            <label class="form-label">Created Date</label>
-            <InputDate @bind-Value="newIssue.CreatedDate" class="form-control" disabled />
-            <ValidationMessage For="@(() => newIssue.CreatedDate)" />
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <label class="form-label">Requester</label>
-            <PersonSelect Persons="@persons" @bind-SelectedPersonId="newIssue.RequesterId" />
-            <ValidationMessage For="@(() => newIssue.RequesterId)" />
-        </div>
-        <div class="col-md-6">
-            <label class="form-label">Assignee</label>
-            <PersonSelect Persons="@persons" @bind-SelectedPersonId="newIssue.AssigneeId" />
-            <ValidationMessage For="@(() => newIssue.AssigneeId)" />
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <label class="form-label">Priority</label>
-            <InputSelect @bind-Value="newIssue.Priority" class="form-select">
-                @foreach (var priority in priorities)
-                {
-                    <option value="@priority">@priority</option>
-                }
-            </InputSelect>
-            <ValidationMessage For="@(() => newIssue.Priority)" />
+@if (IsEditMode && issueToEdit != null)
+{
+    <EditForm Model="@issueToEdit" OnValidSubmit="@UpdateIssue" FormName="IssueForm">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <InputText id="title" @bind-Value="issueToEdit.Title" class="form-control" />
+            <ValidationMessage For="@(() => issueToEdit.Title)" />
         </div>
 
-    </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <InputTextArea id="description" @bind-Value="issueToEdit.Description" class="form-control" rows="3" />
+            <ValidationMessage For="@(() => issueToEdit.Description)" />
+        </div>
 
-    <div class="d-flex justify-content-end">
-        <button type="submit" class="btn btn-primary">Create Issue</button>
-    </div>
-</EditForm>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Due Date</label>
+                <InputDate @bind-Value="issueToEdit.DueDate" class="form-control" />
+                <ValidationMessage For="@(() => issueToEdit.DueDate)" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Created Date</label>
+                <InputDate @bind-Value="issueToEdit.CreatedDate" class="form-control" />
+                <ValidationMessage For="@(() => issueToEdit.CreatedDate)" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Requester</label>
+                <PersonSelect Persons="@persons" @bind-SelectedPersonId="issueToEdit.RequesterId" />
+                <ValidationMessage For="@(() => issueToEdit.RequesterId)" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Assignee</label>
+                <PersonSelect Persons="@persons" @bind-SelectedPersonId="issueToEdit.AssigneeId" />
+                <ValidationMessage For="@(() => issueToEdit.AssigneeId)" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Priority</label>
+                <InputSelect @bind-Value="issueToEdit.Priority" class="form-select">
+                    @foreach (var priority in priorities)
+                    {
+                        <option value="@priority">@priority</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => newIssue.Priority)" />
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Status</label>
+                <InputSelect @bind-Value="issueToEdit.Status" class="form-select">
+                    @foreach (var status in statuses)
+                    {
+                        <option value="@status">@status</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => newIssue.Status)" />
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">Edit Issue</button>
+        </div>
+    </EditForm>
+}
+else if (!IsEditMode)
+{
+    <EditForm Model="@newIssue" OnValidSubmit="@CreateNewIssue" FormName="IssueForm">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <InputText id="title" @bind-Value="newIssue.Title" class="form-control" />
+            <ValidationMessage For="@(() => newIssue.Title)" />
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <InputTextArea id="description" @bind-Value="newIssue.Description" class="form-control" rows="3" />
+            <ValidationMessage For="@(() => newIssue.Description)" />
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Due Date</label>
+                <InputDate @bind-Value="newIssue.DueDate" class="form-control" />
+                <ValidationMessage For="@(() => newIssue.DueDate)" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Created Date</label>
+                <InputDate @bind-Value="newIssue.CreatedDate" class="form-control" disabled />
+                <ValidationMessage For="@(() => newIssue.CreatedDate)" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Requester</label>
+                <PersonSelect Persons="@persons" @bind-SelectedPersonId="newIssue.RequesterId" />
+                <ValidationMessage For="@(() => newIssue.RequesterId)" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Assignee</label>
+                <PersonSelect Persons="@persons" @bind-SelectedPersonId="newIssue.AssigneeId" />
+                <ValidationMessage For="@(() => newIssue.AssigneeId)" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Priority</label>
+                <InputSelect @bind-Value="newIssue.Priority" class="form-select">
+                    @foreach (var priority in priorities)
+                    {
+                        <option value="@priority">@priority</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => newIssue.Priority)" />
+            </div>
+
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">Create Issue</button>
+        </div>
+    </EditForm>
+}
+else
+{
+    <p><em>Loading issue for edit...</em></p>
+}
 
 
 @code {
-    IssueCreateDTO newIssue = new()
-    {
-        CreatedDate = DateOnly.FromDateTime(DateTime.Today),
-        DueDate = DateOnly.FromDateTime(DateTime.Today),
-        Status = IssueStatus.New
-    };
+    [Parameter]
+    public int? IssueId { get; set; }
+    private bool IsEditMode => IssueId.HasValue;
 
+
+    IssueCreateDTO newIssue = new();
+    IssueDTO? issueToEdit;
     private IList<PersonDTO> persons = new List<PersonDTO>();
     private List<IssuePriority> priorities = Enum.GetValues(typeof(IssuePriority)).Cast<IssuePriority>().ToList();
     private List<IssueStatus> statuses = Enum.GetValues(typeof(IssueStatus)).Cast<IssueStatus>().ToList();
 
     protected override async Task OnInitializedAsync()
     {
+        if (IsEditMode)
+        {
+            issueToEdit = await IssueManager.GetById((uint)IssueId);
+        }
+        else
+        {
+            newIssue.CreatedDate = DateOnly.FromDateTime(DateTime.Today);
+            newIssue.DueDate = DateOnly.FromDateTime(DateTime.Today);
+            newIssue.Status = IssueStatus.New;
+
+        }
         persons = await PersonManager.GetAll();
     }
     private async Task CreateNewIssue()
@@ -89,6 +180,15 @@
         Console.WriteLine("newIssue.AssigneeId: " + newIssue.AssigneeId);
         Console.WriteLine("newIssue.RequesterId: " + newIssue.RequesterId);
         await IssueManager.CreateNewIssue(newIssue);
+        Navigation.NavigateTo("/issues");
+    }
+    private async Task UpdateIssue()
+    {
+        Console.WriteLine("Metoda UpdateIssue zavolána!");
+        Console.WriteLine("issueToEdit.Id: " + issueToEdit.Id);
+        Console.WriteLine("issueToEdit.Status: " + issueToEdit.Status);
+        await IssueManager.UpdateIssue(issueToEdit);
+        Console.WriteLine("issueToEdit.Status po zavolání metody: " + issueToEdit.Status);
         Navigation.NavigateTo("/issues");
     }
 }

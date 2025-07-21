@@ -31,6 +31,7 @@ namespace Helpdesk.Managers
 
 		public async Task<IList<IssueDTO>> GetAll()
 		{
+            Console.WriteLine("Volám GetAll z issuesManageru");
 			return _mapper.Map<IList<IssueDTO>>(await _issueRepository.GetAll());
 		}
 		public async Task<IssueDTO> GetById(uint id)
@@ -77,6 +78,17 @@ namespace Helpdesk.Managers
 
 			issue = await _issueRepository.Insert(issue);
 			return _mapper.Map<IssueDTO>(issue);
+		}
+
+		public async Task<IssueDTO> UpdateIssue(IssueDTO issueDTO)
+		{
+            Console.WriteLine("manager: issueDTO.Status: " + issueDTO.Status);
+            Issue issueToBeUpdated = _mapper.Map<Issue>(issueDTO);
+			issueToBeUpdated = await _issueRepository.Update(issueToBeUpdated);
+			 Console.WriteLine("manager po zavolání repo: issueToBeUpdated.Status: " + issueToBeUpdated.Status);
+			Issue? testIssue = await _issueRepository.FindById(issueDTO.Id);
+            Console.WriteLine("manager po zavolání issue z databáze: testIssue.Status: " + testIssue.Status);
+            return _mapper.Map<IssueDTO>(issueToBeUpdated);
 		}
 
 		public async Task<IList<SubIssueDTO>> GetAllSubissues(uint issueId)

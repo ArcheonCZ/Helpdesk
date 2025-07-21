@@ -156,6 +156,42 @@ namespace Helpdesk.Migrations
                             RequesterId = 3L,
                             Status = 3,
                             Title = "Požadavek na nové zařízení"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            AssigneeId = 3L,
+                            CreatedDate = new DateOnly(2025, 6, 15),
+                            Description = "Požadavek, který byl již vyřešen.",
+                            DueDate = new DateOnly(2025, 6, 30),
+                            Priority = 1,
+                            RequesterId = 2L,
+                            Status = 3,
+                            Title = "Vyřízený požadavek"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            AssigneeId = 3L,
+                            CreatedDate = new DateOnly(2025, 6, 20),
+                            Description = "Požadavek, který ještě čeká na vyřízení.",
+                            DueDate = new DateOnly(2025, 7, 5),
+                            Priority = 2,
+                            RequesterId = 1L,
+                            Status = 1,
+                            Title = "Nevyřízený požadavek"
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            AssigneeId = 3L,
+                            CreatedDate = new DateOnly(2025, 6, 20),
+                            Description = "Požadavek, který ještě čeká na vyřízení.",
+                            DueDate = new DateOnly(2025, 7, 5),
+                            Priority = 2,
+                            RequesterId = 1L,
+                            Status = 1,
+                            Title = "Nevyřízený pož. s vyřízenými SubIssues"
                         });
                 });
 
@@ -260,6 +296,80 @@ namespace Helpdesk.Migrations
                     b.HasIndex("IssueId");
 
                     b.ToTable("SubIssues", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Description = "Uživatel požádal o reset hesla.",
+                            DueDate = new DateOnly(2025, 7, 3),
+                            IsDone = true,
+                            IssueId = 1L,
+                            Title = "Reset hesla"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Description = "Zkontrolovat chyby v autentizaci v logu.",
+                            DueDate = new DateOnly(2025, 7, 4),
+                            IsDone = false,
+                            IssueId = 1L,
+                            Title = "Zkontrolovat logy"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Description = "Zkontrolovat a vyčistit stará data.",
+                            DueDate = new DateOnly(2025, 6, 20),
+                            IsDone = true,
+                            IssueId = 4L,
+                            Title = "Vyčistit data"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            Description = "Pro jistotu provést zálohu.",
+                            DueDate = new DateOnly(2025, 6, 25),
+                            IsDone = true,
+                            IssueId = 4L,
+                            Title = "Zálohovat systém"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            Description = "Získat všechny informace od klienta.",
+                            DueDate = new DateOnly(2025, 7, 1),
+                            IsDone = false,
+                            IssueId = 5L,
+                            Title = "Připravit podklady"
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            Description = "Nastavit přidělené zařízení dle požadavků.",
+                            DueDate = new DateOnly(2025, 7, 3),
+                            IsDone = false,
+                            IssueId = 5L,
+                            Title = "Nakonfigurovat zařízení"
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            Description = "Získat všechny informace od klienta.",
+                            DueDate = new DateOnly(2025, 7, 1),
+                            IsDone = true,
+                            IssueId = 6L,
+                            Title = "Připravit podklady"
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            Description = "Nastavit přidělené zařízení dle požadavků.",
+                            DueDate = new DateOnly(2025, 7, 3),
+                            IsDone = true,
+                            IssueId = 6L,
+                            Title = "Nakonfigurovat zařízení"
+                        });
                 });
 
             modelBuilder.Entity("Helpdesk.Models.ChatMessage", b =>

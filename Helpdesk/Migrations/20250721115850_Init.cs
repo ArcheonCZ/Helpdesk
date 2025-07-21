@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Helpdesk.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -46,7 +46,7 @@ namespace Helpdesk.Migrations
                     Status = table.Column<int>(type: "int", nullable: false),
                     Priority = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DueDate = table.Column<DateOnly>(type: "date", nullable: false)
                 },
                 constraints: table =>
@@ -67,7 +67,7 @@ namespace Helpdesk.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Document",
+                name: "Documents",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -75,38 +75,40 @@ namespace Helpdesk.Migrations
                     FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FileType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FileContent = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    IssueId = table.Column<long>(type: "bigint", nullable: true)
+                    IssueId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Document", x => x.Id);
+                    table.PrimaryKey("PK_Documents", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Document_Issues_IssueId",
+                        name: "FK_Documents_Issues_IssueId",
                         column: x => x.IssueId,
                         principalTable: "Issues",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ChatMessage",
+                name: "ChatMessages",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SenderId = table.Column<long>(type: "bigint", nullable: false),
-                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IssueId = table.Column<long>(type: "bigint", nullable: true)
+                    IssueId = table.Column<long>(type: "bigint", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ChatMessage", x => x.Id);
+                    table.PrimaryKey("PK_ChatMessages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ChatMessage_Issues_IssueId",
+                        name: "FK_ChatMessages_Issues_IssueId",
                         column: x => x.IssueId,
                         principalTable: "Issues",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ChatMessage_Persons_SenderId",
+                        name: "FK_ChatMessages_Persons_SenderId",
                         column: x => x.SenderId,
                         principalTable: "Persons",
                         principalColumn: "Id",
@@ -122,7 +124,7 @@ namespace Helpdesk.Migrations
                     IssueId = table.Column<long>(type: "bigint", nullable: false),
                     IsDone = table.Column<bool>(type: "bit", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DueDate = table.Column<DateOnly>(type: "date", nullable: false)
                 },
                 constraints: table =>
@@ -153,22 +155,40 @@ namespace Helpdesk.Migrations
                 {
                     { 1L, 3L, new DateOnly(2025, 7, 1), "Uživatel hlásí, že se nemůže přihlásit do systému.", new DateOnly(2025, 7, 7), 2, 2L, 0, "Problém s přihlášením" },
                     { 2L, 3L, new DateOnly(2025, 7, 2), "Firma nahlásila špatně spočítanou fakturu.", new DateOnly(2025, 7, 20), 1, 1L, 1, "Chyba ve fakturaci" },
-                    { 3L, 1L, new DateOnly(2025, 7, 1), "Zaměstnanec požaduje nové pracovní zařízení.", new DateOnly(2025, 7, 20), 0, 3L, 0, "Požadavek na nové zařízení" }
+                    { 3L, 1L, new DateOnly(2025, 7, 1), "Zaměstnanec požaduje nové pracovní zařízení.", new DateOnly(2025, 7, 20), 0, 3L, 3, "Požadavek na nové zařízení" },
+                    { 4L, 3L, new DateOnly(2025, 6, 15), "Požadavek, který byl již vyřešen.", new DateOnly(2025, 6, 30), 1, 2L, 3, "Vyřízený požadavek" },
+                    { 5L, 3L, new DateOnly(2025, 6, 20), "Požadavek, který ještě čeká na vyřízení.", new DateOnly(2025, 7, 5), 2, 1L, 1, "Nevyřízený požadavek" },
+                    { 6L, 3L, new DateOnly(2025, 6, 20), "Požadavek, který ještě čeká na vyřízení.", new DateOnly(2025, 7, 5), 2, 1L, 1, "Nevyřízený pož. s vyřízenými SubIssues" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "SubIssues",
+                columns: new[] { "Id", "Description", "DueDate", "IsDone", "IssueId", "Title" },
+                values: new object[,]
+                {
+                    { 1L, "Uživatel požádal o reset hesla.", new DateOnly(2025, 7, 3), true, 1L, "Reset hesla" },
+                    { 2L, "Zkontrolovat chyby v autentizaci v logu.", new DateOnly(2025, 7, 4), false, 1L, "Zkontrolovat logy" },
+                    { 3L, "Zkontrolovat a vyčistit stará data.", new DateOnly(2025, 6, 20), true, 4L, "Vyčistit data" },
+                    { 4L, "Pro jistotu provést zálohu.", new DateOnly(2025, 6, 25), true, 4L, "Zálohovat systém" },
+                    { 5L, "Získat všechny informace od klienta.", new DateOnly(2025, 7, 1), false, 5L, "Připravit podklady" },
+                    { 6L, "Nastavit přidělené zařízení dle požadavků.", new DateOnly(2025, 7, 3), false, 5L, "Nakonfigurovat zařízení" },
+                    { 7L, "Získat všechny informace od klienta.", new DateOnly(2025, 7, 1), true, 6L, "Připravit podklady" },
+                    { 8L, "Nastavit přidělené zařízení dle požadavků.", new DateOnly(2025, 7, 3), true, 6L, "Nakonfigurovat zařízení" }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Document_IssueId",
-                table: "Document",
+                name: "IX_Documents_IssueId",
+                table: "Documents",
                 column: "IssueId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChatMessage_IssueId",
-                table: "ChatMessage",
+                name: "IX_ChatMessages_IssueId",
+                table: "ChatMessages",
                 column: "IssueId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChatMessage_SenderId",
-                table: "ChatMessage",
+                name: "IX_ChatMessages_SenderId",
+                table: "ChatMessages",
                 column: "SenderId");
 
             migrationBuilder.CreateIndex(
@@ -191,10 +211,10 @@ namespace Helpdesk.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Document");
+                name: "Documents");
 
             migrationBuilder.DropTable(
-                name: "ChatMessage");
+                name: "ChatMessages");
 
             migrationBuilder.DropTable(
                 name: "SubIssues");

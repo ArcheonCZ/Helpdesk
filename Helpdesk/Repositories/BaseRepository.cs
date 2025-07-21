@@ -55,13 +55,18 @@ namespace Helpdesk.Repositories
 			using var context = _contextFactory.CreateDbContext();
 			var existingEntity = await FindById((uint)GetPrimaryKeyValue(entity));
 
+
 			if (existingEntity == null)
 			{
-				throw new InvalidOperationException("Entity not found.");
+                Console.WriteLine("Entita nenalezena");
+                throw new InvalidOperationException("Entity not found.");
+                
 			}
 
 			context.Entry(existingEntity).CurrentValues.SetValues(entity);
-			await context.SaveChangesAsync();
+            context.Entry(existingEntity).State = EntityState.Modified;
+            var changes = await context.SaveChangesAsync();
+			Console.WriteLine("BaseRepository: počet změněnných záznamů: " + changes);
 			return existingEntity;
 		}
 
